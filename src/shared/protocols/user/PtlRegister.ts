@@ -6,7 +6,6 @@ export interface ReqRegister extends BaseRequest {
 }
 
 export interface ResRegister extends BaseResponse {
-  uid: string;
   _token: string;
 }
 

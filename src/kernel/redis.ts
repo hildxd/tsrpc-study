@@ -1,4 +1,6 @@
 import Redis, { RedisOptions } from "ioredis";
+import * as jwt from "jsonwebtoken";
+import env from "../env";
 
 export const USER_TTL = 60 * 60 * 24 * 7; // 7 days
 
@@ -17,6 +19,16 @@ class RedisHelper extends Redis {
 
   async setSessionKey(key: string, value: string, ttl = 60 * 60 * 24 * 7) {
     await this.set(`session:${key}`, value, "EX", ttl);
+  }
+
+  async setToken(
+    key: string,
+    value: Record<string, any>,
+    ttl = 60 * 60 * 24 * 7
+  ) {
+    let token = jwt.sign(value, env.SECRET);
+    await this.set(`token:${key}`, token, "EX", ttl);
+    return token;
   }
 }
 

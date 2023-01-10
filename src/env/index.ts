@@ -8,6 +8,7 @@ const envs = preloadEnv(doenv.config({}).parsed);
 export const serverSchema = z.object({
   DATABASE_URL: z.string().url(),
   NODE_ENV: z.enum(["development", "test", "production"]),
+  SECRET: z.string(),
 });
 
 const _serverEnv = serverSchema.safeParse(envs);

@@ -4,6 +4,7 @@ import { BaseConf, BaseRequest, BaseResponse } from "./shared/protocols/base";
 import { serviceProto } from "./shared/protocols/serviceProto";
 import { DbCollectionType, initDb } from "./kernel/db";
 import { Collection, OptionalId } from "mongodb";
+import { withJwt } from "./kernel/withJwt";
 
 declare module "tsrpc" {
   export interface ApiCall {
@@ -43,6 +44,7 @@ async function init() {
   // Auto implement APIs
   await server.autoImplementApi(path.resolve(__dirname, "api"));
 
+  await withJwt(server);
   await initDb(server);
 }
 
