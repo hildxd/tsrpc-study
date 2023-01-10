@@ -6,15 +6,6 @@ import { DbCollectionType, initDb } from "./kernel/db";
 import { Collection, OptionalId } from "mongodb";
 import { withJwt } from "./kernel/withJwt";
 
-declare module "tsrpc" {
-  export interface ApiCall {
-    userId?: number;
-    collection: <T extends keyof DbCollectionType>(
-      col: T
-    ) => Collection<OptionalId<DbCollectionType[T]>>;
-  }
-}
-
 // Create the Server
 const server = new HttpServer(serviceProto, {
   port: 3000,
@@ -54,3 +45,12 @@ async function main() {
   await server.start();
 }
 main();
+
+declare module "tsrpc" {
+  export interface ApiCall {
+    userId?: string;
+    collection: <T extends keyof DbCollectionType>(
+      col: T
+    ) => Collection<OptionalId<DbCollectionType[T]>>;
+  }
+}

@@ -6,7 +6,7 @@ import { URLSearchParams } from "url";
 import * as jwt from "jsonwebtoken";
 import env from "../../env";
 
-export function withJwt(server: HttpServer | WsServer) {
+export async function withJwt(server: HttpServer | WsServer) {
   server.flows.preApiCallFlow.push(
     async (node: ApiCall<BaseRequest, BaseResponse, any>) => {
       let token: string | undefined | null = get(node.req, "_token");
@@ -33,7 +33,7 @@ export function withJwt(server: HttpServer | WsServer) {
         }
       }
       if (token) {
-        console.log(`${getUserId(token)}`);
+        node.userId = getUserId(token);
       }
       return node;
     }
