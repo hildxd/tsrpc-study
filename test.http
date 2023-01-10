@@ -1,0 +1,18 @@
+
+@host = http://localhost:3000
+
+### test
+POST {{host}}/GetData
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZXZsam41ZHUyIiwiaWF0IjoxNjczMzYzNTA2fQ.ZypT5XoVdBZNGwOxDBFvIGUl23GgArAB2IXKiQwNZmU
+
+{}
+
+### login
+POST {{host}}/user/Login
+Content-Type: application/json
+
+{
+    "username": "lixudong",
+    "password":""
+}

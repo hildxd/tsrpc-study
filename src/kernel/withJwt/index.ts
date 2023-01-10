@@ -42,9 +42,11 @@ export async function withJwt(server: HttpServer | WsServer) {
 
 function getUserId(_token: string): string | undefined {
   try {
-    const data = jwt.verify(_token, env.SECRET);
-    console.log(data);
-    return "";
+    const data = jwt.verify(_token, env.SECRET) as any;
+    if (data) {
+      return data["uid"];
+    }
+    return undefined;
   } catch {
     return undefined;
   }

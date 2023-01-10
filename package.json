@@ -24,6 +24,7 @@
   "dependencies": {
     "@types/jsonwebtoken": "^9.0.0",
     "@types/lodash": "^4.14.191",
+    "casbin": "^5.20.3",
     "dotenv": "^16.0.3",
     "ioredis": "^5.2.4",
     "jsonwebtoken": "^9.0.0",
