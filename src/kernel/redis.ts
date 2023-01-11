@@ -31,6 +31,10 @@ class RedisHelper extends Redis {
     return token;
   }
 
+  async delToken(uid: string) {
+    await this.del(`token:${uid}`);
+  }
+
   async setRoles(uid: string, value: string[]) {
     await this.set(`roles:${uid}`, value.join(","));
   }

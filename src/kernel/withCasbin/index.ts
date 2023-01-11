@@ -54,30 +54,28 @@ export async function withCasbin(
 
         const type = conf.auths.type || "SOME";
         const roles = conf.auths.roles;
-        const userRoles = node.userRoles;
-        if (userRoles?.length) {
-          if (type === "SOME") {
-            const hasRole = roles.some((role) => userRoles.includes(role));
-            if (!hasRole) {
-              await node.error(
-                new TsrpcError({
-                  message: "您没有权限操作。",
-                  code: "NOT_PERMISSION",
-                  type: TsrpcErrorType.ApiError,
-                })
-              );
-            }
-          } else if (type === "EVERY") {
-            const mustRole = roles.every((role) => userRoles.includes(role));
-            if (!mustRole) {
-              await node.error(
-                new TsrpcError({
-                  message: "您没有权限执行此操作。",
-                  code: "NOT_PERMISSION",
-                  type: TsrpcErrorType.ApiError,
-                })
-              );
-            }
+        const userRoles = node.userRoles ?? [];
+        if (type === "SOME") {
+          const hasRole = roles.some((role) => userRoles.includes(role));
+          if (!hasRole) {
+            await node.error(
+              new TsrpcError({
+                message: "您没有权限操作。",
+                code: "NOT_PERMISSION",
+                type: TsrpcErrorType.ApiError,
+              })
+            );
+          }
+        } else if (type === "EVERY") {
+          const mustRole = roles.every((role) => userRoles.includes(role));
+          if (!mustRole) {
+            await node.error(
+              new TsrpcError({
+                message: "您没有权限执行此操作。",
+                code: "NOT_PERMISSION",
+                type: TsrpcErrorType.ApiError,
+              })
+            );
           }
         }
       }

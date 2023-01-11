@@ -17,7 +17,8 @@
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
     "strictPropertyInitialization": false,
-    "alwaysStrict": true
+    "alwaysStrict": true,
+    "sourceMap": true
   },
   "include": [
     "src"

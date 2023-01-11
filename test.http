@@ -1,6 +1,6 @@
 
 @host = http://localhost:3000
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ1YWRuYjdiaGZ5IiwiaWF0IjoxNjczNDE4MjgyfQ.hK4NZuAlZCMMY8dTN-YrRbKKzFzbra_BuTmh9B33zBY
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJpbWxhbHZ0NnlyIiwiaWF0IjoxNjczNDI0NTI2fQ.X57SHYOoHtE7gODATPYx7cYkIWwNDj0aW89Tw4NNulQ
 
 ### test
 POST {{host}}/GetData

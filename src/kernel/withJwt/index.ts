@@ -34,9 +34,10 @@ export async function withJwt(server: HttpServer | WsServer) {
         }
       }
       if (token) {
-        node.userId = getUserId(token);
+        node.userId = await getUserId(token);
         if (node.userId) {
           node.userRoles = await redis.getRoles(node.userId);
+          console.log("userRoles: ", node.userRoles);
         }
       }
       return node;
@@ -44,11 +45,13 @@ export async function withJwt(server: HttpServer | WsServer) {
   );
 }
 
-function getUserId(_token: string): string | undefined {
+async function getUserId(_token: string): Promise<string | undefined> {
   try {
     const data = jwt.verify(_token, env.SECRET) as any;
     if (data) {
-      return data["uid"];
+      const uid = data["uid"];
+      const exists = await redis.exists(`token:${uid}`);
+      return exists > 0 ? uid : undefined;
     }
     return undefined;
   } catch {

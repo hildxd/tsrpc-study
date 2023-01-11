@@ -29,7 +29,7 @@ export interface ServiceType {
 }
 
 export const serviceProto: ServiceProto<ServiceType> = {
-    "version": 9,
+    "version": 10,
     "services": [
         {
             "id": 3,
@@ -38,7 +38,8 @@ export const serviceProto: ServiceProto<ServiceType> = {
             "conf": {
                 "auths": {
                     "roles": [
-                        "admin"
+                        "admin",
+                        "user"
                     ]
                 }
             }

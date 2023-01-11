@@ -6,7 +6,7 @@ import { BaseRequest, BaseResponse } from "../shared/protocols/base";
 
 export async function initDb(server: HttpServer) {
   const client = await new MongoClient(env.DATABASE_URL).connect();
-  const db: Db = client.db();
+  const db: Db = client.db("tsrpc_study");
   const collection = <T extends keyof DbCollectionType>(
     col: T
   ): Collection<OptionalId<DbCollectionType[T]>> => {
