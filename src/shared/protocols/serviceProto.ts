@@ -1,5 +1,6 @@
 import { ServiceProto } from 'tsrpc-proto';
 import { ReqGetData, ResGetData } from './PtlGetData';
+import { ReqChangeRole, ResChangeRole } from './user/PtlChangeRole';
 import { ReqLogin, ResLogin } from './user/PtlLogin';
 import { ReqRegister, ResRegister } from './user/PtlRegister';
 
@@ -8,6 +9,10 @@ export interface ServiceType {
         "GetData": {
             req: ReqGetData,
             res: ResGetData
+        },
+        "user/ChangeRole": {
+            req: ReqChangeRole,
+            res: ResChangeRole
         },
         "user/Login": {
             req: ReqLogin,
@@ -24,7 +29,7 @@ export interface ServiceType {
 }
 
 export const serviceProto: ServiceProto<ServiceType> = {
-    "version": 6,
+    "version": 9,
     "services": [
         {
             "id": 3,
@@ -32,7 +37,18 @@ export const serviceProto: ServiceProto<ServiceType> = {
             "type": "api",
             "conf": {
                 "auths": {
-                    "type": "SOME",
+                    "roles": [
+                        "admin"
+                    ]
+                }
+            }
+        },
+        {
+            "id": 5,
+            "name": "user/ChangeRole",
+            "type": "api",
+            "conf": {
+                "auths": {
                     "roles": []
                 }
             }
@@ -89,6 +105,58 @@ export const serviceProto: ServiceProto<ServiceType> = {
         },
         "base/BaseResponse": {
             "type": "Interface"
+        },
+        "user/PtlChangeRole/ReqChangeRole": {
+            "type": "Interface",
+            "extends": [
+                {
+                    "id": 0,
+                    "type": {
+                        "type": "Reference",
+                        "target": "base/BaseRequest"
+                    }
+                }
+            ],
+            "properties": [
+                {
+                    "id": 0,
+                    "name": "uid",
+                    "type": {
+                        "type": "String"
+                    }
+                },
+                {
+                    "id": 1,
+                    "name": "roles",
+                    "type": {
+                        "type": "Array",
+                        "elementType": {
+                            "type": "String"
+                        }
+                    }
+                }
+            ]
+        },
+        "user/PtlChangeRole/ResChangeRole": {
+            "type": "Interface",
+            "extends": [
+                {
+                    "id": 0,
+                    "type": {
+                        "type": "Reference",
+                        "target": "base/BaseResponse"
+                    }
+                }
+            ],
+            "properties": [
+                {
+                    "id": 0,
+                    "name": "matchedCount",
+                    "type": {
+                        "type": "Number"
+                    }
+                }
+            ]
         },
         "user/PtlLogin/ReqLogin": {
             "type": "Interface",

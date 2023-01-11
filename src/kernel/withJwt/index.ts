@@ -5,6 +5,7 @@ import * as Http from "http";
 import { URLSearchParams } from "url";
 import * as jwt from "jsonwebtoken";
 import env from "../../env";
+import redis from "../redis";
 
 export async function withJwt(server: HttpServer | WsServer) {
   server.flows.preApiCallFlow.push(
@@ -34,6 +35,9 @@ export async function withJwt(server: HttpServer | WsServer) {
       }
       if (token) {
         node.userId = getUserId(token);
+        if (node.userId) {
+          node.userRoles = await redis.getRoles(node.userId);
+        }
       }
       return node;
     }

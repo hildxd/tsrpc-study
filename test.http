@@ -1,10 +1,11 @@
 
 @host = http://localhost:3000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ1YWRuYjdiaGZ5IiwiaWF0IjoxNjczNDE4MjgyfQ.hK4NZuAlZCMMY8dTN-YrRbKKzFzbra_BuTmh9B33zBY
 
 ### test
 POST {{host}}/GetData
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZXZsam41ZHUyIiwiaWF0IjoxNjczMzYzNTA2fQ.ZypT5XoVdBZNGwOxDBFvIGUl23GgArAB2IXKiQwNZmU
+Authorization: {{token}}
 
 {}
 
@@ -14,7 +15,7 @@ Content-Type: application/json
 
 {
     "username": "lixudong",
-    "password":""
+    "password":"123"
 }
 
 ### register
@@ -25,4 +26,14 @@ Content-Type: application/json
 {
     "username": "lixudong",
     "password": "123"
+}
+
+### changeRoles
+POST {{host}}/user/ChangeRole
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "uid": "uadnb7bhfy",
+    "roles": ["admin"]
 }

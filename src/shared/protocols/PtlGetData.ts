@@ -8,7 +8,6 @@ export interface ResGetData extends BaseResponse {
 
 export const conf: BaseConf = {
   auths: {
-    type: "SOME",
-    roles: [],
+    roles: ["admin"],
   },
 };

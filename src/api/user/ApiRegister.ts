@@ -24,6 +24,7 @@ export default async function (call: ApiCall<ReqRegister, ResRegister>) {
     roles: [],
   });
 
+  await redis.setRoles(userId, []);
   const token = await redis.setToken(userId, { uid: userId });
   call.succ({
     _token: token,

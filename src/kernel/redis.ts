@@ -30,6 +30,18 @@ class RedisHelper extends Redis {
     await this.set(`token:${key}`, token, "EX", ttl);
     return token;
   }
+
+  async setRoles(uid: string, value: string[]) {
+    await this.set(`roles:${uid}`, value.join(","));
+  }
+
+  async getRoles(uid: string) {
+    const data = await this.get(`roles:${uid}`);
+    if (data) {
+      return data.split(",");
+    }
+    return [];
+  }
 }
 
 export const redisOptions: RedisOptions = {
