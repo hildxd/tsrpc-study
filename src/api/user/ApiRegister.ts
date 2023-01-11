@@ -5,6 +5,7 @@ import {
 } from "../../shared/protocols/user/PtlRegister";
 import redis from "../../kernel/redis";
 import { getUserId } from "../../utils/nanoid";
+import bcrypt from "bcryptjs";
 
 export default async function (call: ApiCall<ReqRegister, ResRegister>) {
   let op = await call.collection("User").findOne({
@@ -15,8 +16,10 @@ export default async function (call: ApiCall<ReqRegister, ResRegister>) {
     return;
   }
   let userId = getUserId();
+  const password = bcrypt.hashSync(call.req.password, 8);
   await call.collection("User").insertOne({
     username: call.req.username,
+    password,
     uid: userId,
     roles: [],
   });

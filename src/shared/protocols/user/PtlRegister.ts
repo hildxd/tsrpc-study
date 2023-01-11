@@ -9,9 +9,4 @@ export interface ResRegister extends BaseResponse {
   _token: string;
 }
 
-export const conf: BaseConf = {
-  auths: {
-    type: "EVERY",
-    roles: [],
-  },
-};
+export const conf: BaseConf = {};

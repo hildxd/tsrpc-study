@@ -24,7 +24,7 @@ export interface ServiceType {
 }
 
 export const serviceProto: ServiceProto<ServiceType> = {
-    "version": 5,
+    "version": 6,
     "services": [
         {
             "id": 3,
@@ -47,12 +47,7 @@ export const serviceProto: ServiceProto<ServiceType> = {
             "id": 2,
             "name": "user/Register",
             "type": "api",
-            "conf": {
-                "auths": {
-                    "type": "EVERY",
-                    "roles": []
-                }
-            }
+            "conf": {}
         }
     ],
     "types": {

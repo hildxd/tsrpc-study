@@ -16,3 +16,13 @@ Content-Type: application/json
     "username": "lixudong",
     "password":""
 }
+
+### register
+
+POST {{host}}/user/Register
+Content-Type: application/json
+
+{
+    "username": "lixudong",
+    "password": "123"
+}
