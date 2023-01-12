@@ -34,7 +34,6 @@
     "ioredis": "^5.2.4",
     "jsonwebtoken": "^9.0.0",
     "lodash": "^4.17.21",
-    "mongodb": "^4.13.0",
     "tsrpc": "^3.4.11",
     "zod": "^3.20.2"
   }
