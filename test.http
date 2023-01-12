@@ -1,6 +1,6 @@
 
 @host = http://localhost:3000
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJoZjgxNXltdXFvIiwiaWF0IjoxNjczNTAyNTI0fQ.mgqztzF9ly0t05oX9uv7Yz4RKOQVUjKxKCcdMWqR-Nc
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJpNWszaWhxN2hxIiwiaWF0IjoxNjczNTEzMjI4fQ.Eu3112zY8xZ9HtBxsZtIXMY2bNtt-eOX5CFKD1VcDfM
 
 ### test
 POST {{host}}/GetData
@@ -34,6 +34,61 @@ Authorization: {{token}}
 Content-Type: application/json
 
 {
-    "uid": "hf815ymuqo",
+    "uid": "i5k3ihq7hq",
     "roles": ["admin"]
+}
+
+### post add
+POST {{host}}/post/AddPost
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "title": "文章标题2",
+    "content": "文章内容"
+}
+
+### get all post
+POST {{host}}/post/GetAllPost
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "page": 1,
+    "size": 10
+}
+
+### update post
+POST {{host}}/post/UpdatePost
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "tagId": 3,
+    "id": 1
+}
+
+### add tag
+
+POST {{host}}/tag/Add
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "name": "标签1"
+}
+
+### get all tag
+POST {{host}}/tag/GetAll
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+}
+### get user tag
+POST {{host}}/user/GetTags
+Authorization: {{token}}
+Content-Type: application/json
+
+{
 }

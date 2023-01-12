@@ -1,18 +1,58 @@
 import { ServiceProto } from 'tsrpc-proto';
+import { ReqAddPost, ResAddPost } from './post/PtlAddPost';
+import { ReqDelPost, ResDelPost } from './post/PtlDelPost';
+import { ReqGetAllPost, ResGetAllPost } from './post/PtlGetAllPost';
+import { ReqGetPost, ResGetPost } from './post/PtlGetPost';
+import { ReqUpdatePost, ResUpdatePost } from './post/PtlUpdatePost';
 import { ReqGetData, ResGetData } from './PtlGetData';
+import { ReqAdd, ResAdd } from './tag/PtlAdd';
+import { ReqGetAll, ResGetAll } from './tag/PtlGetAll';
 import { ReqChangeRole, ResChangeRole } from './user/PtlChangeRole';
+import { ReqGetTags, ResGetTags } from './user/PtlGetTags';
 import { ReqLogin, ResLogin } from './user/PtlLogin';
 import { ReqRegister, ResRegister } from './user/PtlRegister';
 
 export interface ServiceType {
     api: {
+        "post/AddPost": {
+            req: ReqAddPost,
+            res: ResAddPost
+        },
+        "post/DelPost": {
+            req: ReqDelPost,
+            res: ResDelPost
+        },
+        "post/GetAllPost": {
+            req: ReqGetAllPost,
+            res: ResGetAllPost
+        },
+        "post/GetPost": {
+            req: ReqGetPost,
+            res: ResGetPost
+        },
+        "post/UpdatePost": {
+            req: ReqUpdatePost,
+            res: ResUpdatePost
+        },
         "GetData": {
             req: ReqGetData,
             res: ResGetData
         },
+        "tag/Add": {
+            req: ReqAdd,
+            res: ResAdd
+        },
+        "tag/GetAll": {
+            req: ReqGetAll,
+            res: ResGetAll
+        },
         "user/ChangeRole": {
             req: ReqChangeRole,
             res: ResChangeRole
+        },
+        "user/GetTags": {
+            req: ReqGetTags,
+            res: ResGetTags
         },
         "user/Login": {
             req: ReqLogin,
@@ -29,10 +69,60 @@ export interface ServiceType {
 }
 
 export const serviceProto: ServiceProto<ServiceType> = {
-    "version": 12,
+    "version": 2,
     "services": [
         {
-            "id": 3,
+            "id": 0,
+            "name": "post/AddPost",
+            "type": "api",
+            "conf": {
+                "auths": {
+                    "roles": []
+                }
+            }
+        },
+        {
+            "id": 1,
+            "name": "post/DelPost",
+            "type": "api",
+            "conf": {
+                "auths": {
+                    "roles": []
+                }
+            }
+        },
+        {
+            "id": 11,
+            "name": "post/GetAllPost",
+            "type": "api",
+            "conf": {
+                "auths": {
+                    "roles": []
+                }
+            }
+        },
+        {
+            "id": 2,
+            "name": "post/GetPost",
+            "type": "api",
+            "conf": {
+                "auths": {
+                    "roles": []
+                }
+            }
+        },
+        {
+            "id": 4,
+            "name": "post/UpdatePost",
+            "type": "api",
+            "conf": {
+                "auths": {
+                    "roles": []
+                }
+            }
+        },
+        {
+            "id": 5,
             "name": "GetData",
             "type": "api",
             "conf": {
@@ -45,7 +135,27 @@ export const serviceProto: ServiceProto<ServiceType> = {
             }
         },
         {
-            "id": 5,
+            "id": 6,
+            "name": "tag/Add",
+            "type": "api",
+            "conf": {
+                "auths": {
+                    "roles": []
+                }
+            }
+        },
+        {
+            "id": 7,
+            "name": "tag/GetAll",
+            "type": "api",
+            "conf": {
+                "auths": {
+                    "roles": []
+                }
+            }
+        },
+        {
+            "id": 8,
             "name": "user/ChangeRole",
             "type": "api",
             "conf": {
@@ -55,19 +165,562 @@ export const serviceProto: ServiceProto<ServiceType> = {
             }
         },
         {
-            "id": 4,
+            "id": 12,
+            "name": "user/GetTags",
+            "type": "api",
+            "conf": {
+                "auths": {
+                    "roles": []
+                }
+            }
+        },
+        {
+            "id": 9,
             "name": "user/Login",
             "type": "api",
             "conf": {}
         },
         {
-            "id": 2,
+            "id": 10,
             "name": "user/Register",
             "type": "api",
             "conf": {}
         }
     ],
     "types": {
+        "post/PtlAddPost/ReqAddPost": {
+            "type": "Interface",
+            "extends": [
+                {
+                    "id": 0,
+                    "type": {
+                        "type": "Reference",
+                        "target": "base/BaseRequest"
+                    }
+                },
+                {
+                    "id": 1,
+                    "type": {
+                        "target": {
+                            "type": "Reference",
+                            "target": "../db/index/Post"
+                        },
+                        "keys": [
+                            "title",
+                            "content"
+                        ],
+                        "type": "Pick"
+                    }
+                }
+            ]
+        },
+        "base/BaseRequest": {
+            "type": "Interface"
+        },
+        "../db/index/Post": {
+            "type": "Interface",
+            "properties": [
+                {
+                    "id": 0,
+                    "name": "id",
+                    "type": {
+                        "type": "Number"
+                    }
+                },
+                {
+                    "id": 1,
+                    "name": "title",
+                    "type": {
+                        "type": "String"
+                    }
+                },
+                {
+                    "id": 2,
+                    "name": "content",
+                    "type": {
+                        "type": "String"
+                    }
+                },
+                {
+                    "id": 3,
+                    "name": "pubished",
+                    "type": {
+                        "type": "Boolean"
+                    }
+                },
+                {
+                    "id": 4,
+                    "name": "authorId",
+                    "type": {
+                        "type": "String"
+                    }
+                },
+                {
+                    "id": 5,
+                    "name": "createTime",
+                    "type": {
+                        "type": "Date"
+                    }
+                },
+                {
+                    "id": 6,
+                    "name": "updateTime",
+                    "type": {
+                        "type": "Union",
+                        "members": [
+                            {
+                                "id": 0,
+                                "type": {
+                                    "type": "Date"
+                                }
+                            },
+                            {
+                                "id": 1,
+                                "type": {
+                                    "type": "Literal",
+                                    "literal": null
+                                }
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        },
+        "post/PtlAddPost/ResAddPost": {
+            "type": "Interface",
+            "extends": [
+                {
+                    "id": 0,
+                    "type": {
+                        "type": "Reference",
+                        "target": "base/BaseResponse"
+                    }
+                },
+                {
+                    "id": 1,
+                    "type": {
+                        "target": {
+                            "type": "Reference",
+                            "target": "../db/index/PostFull"
+                        },
+                        "keys": [
+                            "id"
+                        ],
+                        "type": "Pick"
+                    }
+                }
+            ]
+        },
+        "base/BaseResponse": {
+            "type": "Interface"
+        },
+        "../db/index/PostFull": {
+            "type": "Interface",
+            "properties": [
+                {
+                    "id": 0,
+                    "name": "id",
+                    "type": {
+                        "type": "Number"
+                    }
+                },
+                {
+                    "id": 1,
+                    "name": "title",
+                    "type": {
+                        "type": "String"
+                    }
+                },
+                {
+                    "id": 2,
+                    "name": "content",
+                    "type": {
+                        "type": "String"
+                    }
+                },
+                {
+                    "id": 3,
+                    "name": "pubished",
+                    "type": {
+                        "type": "Boolean"
+                    }
+                },
+                {
+                    "id": 4,
+                    "name": "author",
+                    "type": {
+                        "type": "Reference",
+                        "target": "../db/index/User"
+                    }
+                },
+                {
+                    "id": 5,
+                    "name": "authorId",
+                    "type": {
+                        "type": "String"
+                    }
+                },
+                {
+                    "id": 7,
+                    "name": "createTime",
+                    "type": {
+                        "type": "Date"
+                    }
+                },
+                {
+                    "id": 8,
+                    "name": "updateTime",
+                    "type": {
+                        "type": "Union",
+                        "members": [
+                            {
+                                "id": 0,
+                                "type": {
+                                    "type": "Date"
+                                }
+                            },
+                            {
+                                "id": 1,
+                                "type": {
+                                    "type": "Literal",
+                                    "literal": null
+                                }
+                            }
+                        ]
+                    },
+                    "optional": true
+                },
+                {
+                    "id": 9,
+                    "name": "Post_Tag",
+                    "type": {
+                        "type": "Array",
+                        "elementType": {
+                            "type": "Reference",
+                            "target": "../db/index/Post_Tag"
+                        }
+                    }
+                }
+            ]
+        },
+        "../db/index/User": {
+            "type": "Interface",
+            "properties": [
+                {
+                    "id": 0,
+                    "name": "id",
+                    "type": {
+                        "type": "Number"
+                    }
+                },
+                {
+                    "id": 1,
+                    "name": "uid",
+                    "type": {
+                        "type": "String"
+                    }
+                },
+                {
+                    "id": 2,
+                    "name": "nickName",
+                    "type": {
+                        "type": "String"
+                    }
+                },
+                {
+                    "id": 3,
+                    "name": "username",
+                    "type": {
+                        "type": "String"
+                    }
+                },
+                {
+                    "id": 4,
+                    "name": "password",
+                    "type": {
+                        "type": "String"
+                    }
+                },
+                {
+                    "id": 5,
+                    "name": "roles",
+                    "type": {
+                        "type": "Array",
+                        "elementType": {
+                            "type": "String"
+                        }
+                    }
+                },
+                {
+                    "id": 6,
+                    "name": "createTime",
+                    "type": {
+                        "type": "Date"
+                    }
+                },
+                {
+                    "id": 7,
+                    "name": "updateTime",
+                    "type": {
+                        "type": "Union",
+                        "members": [
+                            {
+                                "id": 0,
+                                "type": {
+                                    "type": "Date"
+                                }
+                            },
+                            {
+                                "id": 1,
+                                "type": {
+                                    "type": "Literal",
+                                    "literal": null
+                                }
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        },
+        "../db/index/Post_Tag": {
+            "type": "Interface",
+            "properties": [
+                {
+                    "id": 1,
+                    "name": "postId",
+                    "type": {
+                        "type": "Number"
+                    }
+                },
+                {
+                    "id": 2,
+                    "name": "tagId",
+                    "type": {
+                        "type": "Number"
+                    }
+                }
+            ]
+        },
+        "post/PtlDelPost/ReqDelPost": {
+            "type": "Interface",
+            "extends": [
+                {
+                    "id": 0,
+                    "type": {
+                        "type": "Reference",
+                        "target": "base/BaseRequest"
+                    }
+                },
+                {
+                    "id": 1,
+                    "type": {
+                        "target": {
+                            "type": "Reference",
+                            "target": "../db/index/PostFull"
+                        },
+                        "keys": [
+                            "id"
+                        ],
+                        "type": "Pick"
+                    }
+                }
+            ]
+        },
+        "post/PtlDelPost/ResDelPost": {
+            "type": "Interface",
+            "extends": [
+                {
+                    "id": 0,
+                    "type": {
+                        "type": "Reference",
+                        "target": "base/BaseResponse"
+                    }
+                }
+            ],
+            "properties": [
+                {
+                    "id": 0,
+                    "name": "message",
+                    "type": {
+                        "type": "String"
+                    }
+                }
+            ]
+        },
+        "post/PtlGetAllPost/ReqGetAllPost": {
+            "type": "Interface",
+            "extends": [
+                {
+                    "id": 0,
+                    "type": {
+                        "type": "Reference",
+                        "target": "base/BaseRequest"
+                    }
+                }
+            ],
+            "properties": [
+                {
+                    "id": 0,
+                    "name": "page",
+                    "type": {
+                        "type": "Number"
+                    }
+                },
+                {
+                    "id": 1,
+                    "name": "size",
+                    "type": {
+                        "type": "Number"
+                    }
+                }
+            ]
+        },
+        "post/PtlGetAllPost/ResGetAllPost": {
+            "type": "Interface",
+            "extends": [
+                {
+                    "id": 0,
+                    "type": {
+                        "type": "Reference",
+                        "target": "base/BaseResponse"
+                    }
+                }
+            ],
+            "properties": [
+                {
+                    "id": 0,
+                    "name": "posts",
+                    "type": {
+                        "type": "Array",
+                        "elementType": {
+                            "type": "Reference",
+                            "target": "../db/index/Post"
+                        }
+                    }
+                },
+                {
+                    "id": 1,
+                    "name": "count",
+                    "type": {
+                        "type": "Number"
+                    }
+                }
+            ]
+        },
+        "post/PtlGetPost/ReqGetPost": {
+            "type": "Interface",
+            "extends": [
+                {
+                    "id": 0,
+                    "type": {
+                        "type": "Reference",
+                        "target": "base/BaseRequest"
+                    }
+                },
+                {
+                    "id": 1,
+                    "type": {
+                        "target": {
+                            "type": "Reference",
+                            "target": "../db/index/PostFull"
+                        },
+                        "keys": [
+                            "id"
+                        ],
+                        "type": "Pick"
+                    }
+                }
+            ]
+        },
+        "post/PtlGetPost/ResGetPost": {
+            "type": "Interface",
+            "extends": [
+                {
+                    "id": 0,
+                    "type": {
+                        "type": "Reference",
+                        "target": "base/BaseResponse"
+                    }
+                }
+            ],
+            "properties": [
+                {
+                    "id": 0,
+                    "name": "post",
+                    "type": {
+                        "type": "Reference",
+                        "target": "../db/index/PostFull"
+                    }
+                }
+            ]
+        },
+        "post/PtlUpdatePost/ReqUpdatePost": {
+            "type": "Interface",
+            "extends": [
+                {
+                    "id": 0,
+                    "type": {
+                        "type": "Reference",
+                        "target": "base/BaseRequest"
+                    }
+                },
+                {
+                    "id": 2,
+                    "type": {
+                        "type": "Partial",
+                        "target": {
+                            "type": "Reference",
+                            "target": "../db/index/Post"
+                        }
+                    }
+                }
+            ],
+            "properties": [
+                {
+                    "id": 0,
+                    "name": "id",
+                    "type": {
+                        "type": "IndexedAccess",
+                        "index": "id",
+                        "objectType": {
+                            "type": "Reference",
+                            "target": "../db/index/Post"
+                        }
+                    }
+                },
+                {
+                    "id": 1,
+                    "name": "tagId",
+                    "type": {
+                        "type": "Number"
+                    },
+                    "optional": true
+                }
+            ]
+        },
+        "post/PtlUpdatePost/ResUpdatePost": {
+            "type": "Interface",
+            "extends": [
+                {
+                    "id": 0,
+                    "type": {
+                        "type": "Reference",
+                        "target": "base/BaseResponse"
+                    }
+                }
+            ],
+            "properties": [
+                {
+                    "id": 0,
+                    "name": "message",
+                    "type": {
+                        "type": "String"
+                    }
+                }
+            ]
+        },
         "PtlGetData/ReqGetData": {
             "type": "Interface",
             "extends": [
@@ -79,9 +732,6 @@ export const serviceProto: ServiceProto<ServiceType> = {
                     }
                 }
             ]
-        },
-        "base/BaseRequest": {
-            "type": "Interface"
         },
         "PtlGetData/ResGetData": {
             "type": "Interface",
@@ -104,8 +754,125 @@ export const serviceProto: ServiceProto<ServiceType> = {
                 }
             ]
         },
-        "base/BaseResponse": {
-            "type": "Interface"
+        "tag/PtlAdd/ReqAdd": {
+            "type": "Interface",
+            "extends": [
+                {
+                    "id": 0,
+                    "type": {
+                        "type": "Reference",
+                        "target": "base/BaseRequest"
+                    }
+                },
+                {
+                    "id": 1,
+                    "type": {
+                        "target": {
+                            "type": "Reference",
+                            "target": "../db/index/Tag"
+                        },
+                        "keys": [
+                            "name"
+                        ],
+                        "type": "Pick"
+                    }
+                }
+            ]
+        },
+        "../db/index/Tag": {
+            "type": "Interface",
+            "properties": [
+                {
+                    "id": 0,
+                    "name": "id",
+                    "type": {
+                        "type": "Number"
+                    }
+                },
+                {
+                    "id": 1,
+                    "name": "name",
+                    "type": {
+                        "type": "String"
+                    }
+                },
+                {
+                    "id": 2,
+                    "name": "userId",
+                    "type": {
+                        "type": "String"
+                    }
+                },
+                {
+                    "id": 3,
+                    "name": "createTime",
+                    "type": {
+                        "type": "Date"
+                    }
+                }
+            ]
+        },
+        "tag/PtlAdd/ResAdd": {
+            "type": "Interface",
+            "extends": [
+                {
+                    "id": 0,
+                    "type": {
+                        "type": "Reference",
+                        "target": "base/BaseResponse"
+                    }
+                },
+                {
+                    "id": 1,
+                    "type": {
+                        "target": {
+                            "type": "Reference",
+                            "target": "../db/index/Tag"
+                        },
+                        "keys": [
+                            "id"
+                        ],
+                        "type": "Pick"
+                    }
+                }
+            ]
+        },
+        "tag/PtlGetAll/ReqGetAll": {
+            "type": "Interface",
+            "extends": [
+                {
+                    "id": 0,
+                    "type": {
+                        "type": "Reference",
+                        "target": "base/BaseRequest"
+                    }
+                }
+            ]
+        },
+        "tag/PtlGetAll/ResGetAll": {
+            "type": "Interface",
+            "extends": [
+                {
+                    "id": 0,
+                    "type": {
+                        "type": "Reference",
+                        "target": "base/BaseResponse"
+                    }
+                }
+            ],
+            "properties": [
+                {
+                    "id": 0,
+                    "name": "tags",
+                    "type": {
+                        "type": "Array",
+                        "elementType": {
+                            "type": "Reference",
+                            "target": "../db/index/Tag"
+                        }
+                    }
+                }
+            ]
         },
         "user/PtlChangeRole/ReqChangeRole": {
             "type": "Interface",
@@ -155,6 +922,43 @@ export const serviceProto: ServiceProto<ServiceType> = {
                     "name": "message",
                     "type": {
                         "type": "String"
+                    }
+                }
+            ]
+        },
+        "user/PtlGetTags/ReqGetTags": {
+            "type": "Interface",
+            "extends": [
+                {
+                    "id": 0,
+                    "type": {
+                        "type": "Reference",
+                        "target": "base/BaseRequest"
+                    }
+                }
+            ]
+        },
+        "user/PtlGetTags/ResGetTags": {
+            "type": "Interface",
+            "extends": [
+                {
+                    "id": 0,
+                    "type": {
+                        "type": "Reference",
+                        "target": "base/BaseResponse"
+                    }
+                }
+            ],
+            "properties": [
+                {
+                    "id": 0,
+                    "name": "tags",
+                    "type": {
+                        "type": "Array",
+                        "elementType": {
+                            "type": "Reference",
+                            "target": "../db/index/Tag"
+                        }
                     }
                 }
             ]
@@ -249,7 +1053,7 @@ export const serviceProto: ServiceProto<ServiceType> = {
             ],
             "properties": [
                 {
-                    "id": 1,
+                    "id": 0,
                     "name": "_token",
                     "type": {
                         "type": "String"
