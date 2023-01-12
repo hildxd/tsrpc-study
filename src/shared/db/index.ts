@@ -23,7 +23,7 @@ export type UserFull = {
     /* 修改时间 */
     updateTime?: Date | null;
     /* 标签 */
-    Tag: Tag[];
+    tags: Tag[];
 };
 
 /* Model 用户 */
@@ -51,7 +51,7 @@ export type UserRelation = {
     /* 文章 */
     posts: Post[];
     /* 标签 */
-    Tag: Tag[];
+    tags: Tag[];
 };
 
 /* Model User Relation Posts */
@@ -60,10 +60,10 @@ export type UserPostsRelation = {
     posts: Post[];
 };
 
-/* Model User Relation Tag */
-export type UserTagRelation = {
+/* Model User Relation Tags */
+export type UserTagsRelation = {
     /* 标签 */
-    Tag: Tag[];
+    tags: Tag[];
 };
 
 /* Model 文章 */
@@ -84,7 +84,7 @@ export type PostFull = {
     createTime: Date;
     /* 修改时间 */
     updateTime?: Date | null;
-    Post_Tag: Post_Tag[];
+    tags: Post_Tag[];
 };
 
 /* Model 文章 */
@@ -109,7 +109,7 @@ export type Post = {
 export type PostRelation = {
     /* 作者 */
     author: User;
-    Post_Tag: Post_Tag[];
+    tags: Post_Tag[];
 };
 
 /* Model Post Relation Author */
@@ -118,9 +118,9 @@ export type PostAuthorRelation = {
     author: User;
 };
 
-/* Model Post Relation Post_Tag */
-export type PostPost_TagRelation = {
-    Post_Tag: Post_Tag[];
+/* Model Post Relation Tags */
+export type PostTagsRelation = {
+    tags: Post_Tag[];
 };
 
 /* Model undefined */
@@ -165,7 +165,7 @@ export type TagFull = {
     userId: string;
     /* 创建时间 */
     createTime: Date;
-    Post_Tag: Post_Tag[];
+    posts: Post_Tag[];
 };
 
 /* Model 标签 */
@@ -184,7 +184,7 @@ export type Tag = {
 export type TagRelation = {
     /* 用户 */
     user: User;
-    Post_Tag: Post_Tag[];
+    posts: Post_Tag[];
 };
 
 /* Model Tag Relation User */
@@ -193,7 +193,7 @@ export type TagUserRelation = {
     user: User;
 };
 
-/* Model Tag Relation Post_Tag */
-export type TagPost_TagRelation = {
-    Post_Tag: Post_Tag[];
+/* Model Tag Relation Posts */
+export type TagPostsRelation = {
+    posts: Post_Tag[];
 };

@@ -7,7 +7,6 @@ import {
 
 export default async function (call: ApiCall<ReqGetAllPost, ResGetAllPost>) {
   const allPosts = await db.post.findMany();
-  console.log(allPosts);
   call.succ({
     posts: allPosts,
     count: 10,

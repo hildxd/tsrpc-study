@@ -1,9 +1,11 @@
 import { Post } from "../../db";
 import { BaseRequest, BaseResponse, BaseConf } from "../base";
 
-export interface ReqUpdatePost extends BaseRequest, Partial<Post> {
+export interface ReqUpdatePost
+  extends BaseRequest,
+    Partial<Pick<Post, "createTime" | "updateTime" | "authorId">> {
   id: Post["id"];
-  tagId?: number;
+  tagId?: number[];
 }
 
 export interface ResUpdatePost extends BaseResponse {

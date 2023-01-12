@@ -4,7 +4,6 @@ import { ReqDelPost, ResDelPost } from './post/PtlDelPost';
 import { ReqGetAllPost, ResGetAllPost } from './post/PtlGetAllPost';
 import { ReqGetPost, ResGetPost } from './post/PtlGetPost';
 import { ReqUpdatePost, ResUpdatePost } from './post/PtlUpdatePost';
-import { ReqGetData, ResGetData } from './PtlGetData';
 import { ReqAdd, ResAdd } from './tag/PtlAdd';
 import { ReqGetAll, ResGetAll } from './tag/PtlGetAll';
 import { ReqChangeRole, ResChangeRole } from './user/PtlChangeRole';
@@ -33,10 +32,6 @@ export interface ServiceType {
         "post/UpdatePost": {
             req: ReqUpdatePost,
             res: ResUpdatePost
-        },
-        "GetData": {
-            req: ReqGetData,
-            res: ResGetData
         },
         "tag/Add": {
             req: ReqAdd,
@@ -69,7 +64,7 @@ export interface ServiceType {
 }
 
 export const serviceProto: ServiceProto<ServiceType> = {
-    "version": 2,
+    "version": 4,
     "services": [
         {
             "id": 0,
@@ -118,19 +113,6 @@ export const serviceProto: ServiceProto<ServiceType> = {
             "conf": {
                 "auths": {
                     "roles": []
-                }
-            }
-        },
-        {
-            "id": 5,
-            "name": "GetData",
-            "type": "api",
-            "conf": {
-                "auths": {
-                    "roles": [
-                        "admin",
-                        "user"
-                    ]
                 }
             }
         },
@@ -210,6 +192,18 @@ export const serviceProto: ServiceProto<ServiceType> = {
                             "content"
                         ],
                         "type": "Pick"
+                    }
+                }
+            ],
+            "properties": [
+                {
+                    "id": 0,
+                    "name": "tagId",
+                    "type": {
+                        "type": "Array",
+                        "elementType": {
+                            "type": "Number"
+                        }
                     }
                 }
             ]
@@ -298,11 +292,11 @@ export const serviceProto: ServiceProto<ServiceType> = {
                     }
                 },
                 {
-                    "id": 1,
+                    "id": 2,
                     "type": {
                         "target": {
                             "type": "Reference",
-                            "target": "../db/index/PostFull"
+                            "target": "../db/index/Post"
                         },
                         "keys": [
                             "id"
@@ -315,194 +309,6 @@ export const serviceProto: ServiceProto<ServiceType> = {
         "base/BaseResponse": {
             "type": "Interface"
         },
-        "../db/index/PostFull": {
-            "type": "Interface",
-            "properties": [
-                {
-                    "id": 0,
-                    "name": "id",
-                    "type": {
-                        "type": "Number"
-                    }
-                },
-                {
-                    "id": 1,
-                    "name": "title",
-                    "type": {
-                        "type": "String"
-                    }
-                },
-                {
-                    "id": 2,
-                    "name": "content",
-                    "type": {
-                        "type": "String"
-                    }
-                },
-                {
-                    "id": 3,
-                    "name": "pubished",
-                    "type": {
-                        "type": "Boolean"
-                    }
-                },
-                {
-                    "id": 4,
-                    "name": "author",
-                    "type": {
-                        "type": "Reference",
-                        "target": "../db/index/User"
-                    }
-                },
-                {
-                    "id": 5,
-                    "name": "authorId",
-                    "type": {
-                        "type": "String"
-                    }
-                },
-                {
-                    "id": 7,
-                    "name": "createTime",
-                    "type": {
-                        "type": "Date"
-                    }
-                },
-                {
-                    "id": 8,
-                    "name": "updateTime",
-                    "type": {
-                        "type": "Union",
-                        "members": [
-                            {
-                                "id": 0,
-                                "type": {
-                                    "type": "Date"
-                                }
-                            },
-                            {
-                                "id": 1,
-                                "type": {
-                                    "type": "Literal",
-                                    "literal": null
-                                }
-                            }
-                        ]
-                    },
-                    "optional": true
-                },
-                {
-                    "id": 9,
-                    "name": "Post_Tag",
-                    "type": {
-                        "type": "Array",
-                        "elementType": {
-                            "type": "Reference",
-                            "target": "../db/index/Post_Tag"
-                        }
-                    }
-                }
-            ]
-        },
-        "../db/index/User": {
-            "type": "Interface",
-            "properties": [
-                {
-                    "id": 0,
-                    "name": "id",
-                    "type": {
-                        "type": "Number"
-                    }
-                },
-                {
-                    "id": 1,
-                    "name": "uid",
-                    "type": {
-                        "type": "String"
-                    }
-                },
-                {
-                    "id": 2,
-                    "name": "nickName",
-                    "type": {
-                        "type": "String"
-                    }
-                },
-                {
-                    "id": 3,
-                    "name": "username",
-                    "type": {
-                        "type": "String"
-                    }
-                },
-                {
-                    "id": 4,
-                    "name": "password",
-                    "type": {
-                        "type": "String"
-                    }
-                },
-                {
-                    "id": 5,
-                    "name": "roles",
-                    "type": {
-                        "type": "Array",
-                        "elementType": {
-                            "type": "String"
-                        }
-                    }
-                },
-                {
-                    "id": 6,
-                    "name": "createTime",
-                    "type": {
-                        "type": "Date"
-                    }
-                },
-                {
-                    "id": 7,
-                    "name": "updateTime",
-                    "type": {
-                        "type": "Union",
-                        "members": [
-                            {
-                                "id": 0,
-                                "type": {
-                                    "type": "Date"
-                                }
-                            },
-                            {
-                                "id": 1,
-                                "type": {
-                                    "type": "Literal",
-                                    "literal": null
-                                }
-                            }
-                        ]
-                    },
-                    "optional": true
-                }
-            ]
-        },
-        "../db/index/Post_Tag": {
-            "type": "Interface",
-            "properties": [
-                {
-                    "id": 1,
-                    "name": "postId",
-                    "type": {
-                        "type": "Number"
-                    }
-                },
-                {
-                    "id": 2,
-                    "name": "tagId",
-                    "type": {
-                        "type": "Number"
-                    }
-                }
-            ]
-        },
         "post/PtlDelPost/ReqDelPost": {
             "type": "Interface",
             "extends": [
@@ -514,11 +320,11 @@ export const serviceProto: ServiceProto<ServiceType> = {
                     }
                 },
                 {
-                    "id": 1,
+                    "id": 2,
                     "type": {
                         "target": {
                             "type": "Reference",
-                            "target": "../db/index/PostFull"
+                            "target": "../db/index/Post"
                         },
                         "keys": [
                             "id"
@@ -634,6 +440,194 @@ export const serviceProto: ServiceProto<ServiceType> = {
                 }
             ]
         },
+        "../db/index/PostFull": {
+            "type": "Interface",
+            "properties": [
+                {
+                    "id": 0,
+                    "name": "id",
+                    "type": {
+                        "type": "Number"
+                    }
+                },
+                {
+                    "id": 1,
+                    "name": "title",
+                    "type": {
+                        "type": "String"
+                    }
+                },
+                {
+                    "id": 2,
+                    "name": "content",
+                    "type": {
+                        "type": "String"
+                    }
+                },
+                {
+                    "id": 3,
+                    "name": "pubished",
+                    "type": {
+                        "type": "Boolean"
+                    }
+                },
+                {
+                    "id": 4,
+                    "name": "author",
+                    "type": {
+                        "type": "Reference",
+                        "target": "../db/index/User"
+                    }
+                },
+                {
+                    "id": 5,
+                    "name": "authorId",
+                    "type": {
+                        "type": "String"
+                    }
+                },
+                {
+                    "id": 7,
+                    "name": "createTime",
+                    "type": {
+                        "type": "Date"
+                    }
+                },
+                {
+                    "id": 8,
+                    "name": "updateTime",
+                    "type": {
+                        "type": "Union",
+                        "members": [
+                            {
+                                "id": 0,
+                                "type": {
+                                    "type": "Date"
+                                }
+                            },
+                            {
+                                "id": 1,
+                                "type": {
+                                    "type": "Literal",
+                                    "literal": null
+                                }
+                            }
+                        ]
+                    },
+                    "optional": true
+                },
+                {
+                    "id": 10,
+                    "name": "tags",
+                    "type": {
+                        "type": "Array",
+                        "elementType": {
+                            "type": "Reference",
+                            "target": "../db/index/Post_Tag"
+                        }
+                    }
+                }
+            ]
+        },
+        "../db/index/User": {
+            "type": "Interface",
+            "properties": [
+                {
+                    "id": 0,
+                    "name": "id",
+                    "type": {
+                        "type": "Number"
+                    }
+                },
+                {
+                    "id": 1,
+                    "name": "uid",
+                    "type": {
+                        "type": "String"
+                    }
+                },
+                {
+                    "id": 2,
+                    "name": "nickName",
+                    "type": {
+                        "type": "String"
+                    }
+                },
+                {
+                    "id": 3,
+                    "name": "username",
+                    "type": {
+                        "type": "String"
+                    }
+                },
+                {
+                    "id": 4,
+                    "name": "password",
+                    "type": {
+                        "type": "String"
+                    }
+                },
+                {
+                    "id": 5,
+                    "name": "roles",
+                    "type": {
+                        "type": "Array",
+                        "elementType": {
+                            "type": "String"
+                        }
+                    }
+                },
+                {
+                    "id": 6,
+                    "name": "createTime",
+                    "type": {
+                        "type": "Date"
+                    }
+                },
+                {
+                    "id": 7,
+                    "name": "updateTime",
+                    "type": {
+                        "type": "Union",
+                        "members": [
+                            {
+                                "id": 0,
+                                "type": {
+                                    "type": "Date"
+                                }
+                            },
+                            {
+                                "id": 1,
+                                "type": {
+                                    "type": "Literal",
+                                    "literal": null
+                                }
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        },
+        "../db/index/Post_Tag": {
+            "type": "Interface",
+            "properties": [
+                {
+                    "id": 1,
+                    "name": "postId",
+                    "type": {
+                        "type": "Number"
+                    }
+                },
+                {
+                    "id": 2,
+                    "name": "tagId",
+                    "type": {
+                        "type": "Number"
+                    }
+                }
+            ]
+        },
         "post/PtlGetPost/ResGetPost": {
             "type": "Interface",
             "extends": [
@@ -667,12 +661,20 @@ export const serviceProto: ServiceProto<ServiceType> = {
                     }
                 },
                 {
-                    "id": 2,
+                    "id": 3,
                     "type": {
                         "type": "Partial",
                         "target": {
-                            "type": "Reference",
-                            "target": "../db/index/Post"
+                            "target": {
+                                "type": "Reference",
+                                "target": "../db/index/Post"
+                            },
+                            "keys": [
+                                "createTime",
+                                "updateTime",
+                                "authorId"
+                            ],
+                            "type": "Pick"
                         }
                     }
                 }
@@ -694,7 +696,10 @@ export const serviceProto: ServiceProto<ServiceType> = {
                     "id": 1,
                     "name": "tagId",
                     "type": {
-                        "type": "Number"
+                        "type": "Array",
+                        "elementType": {
+                            "type": "Number"
+                        }
                     },
                     "optional": true
                 }
@@ -715,39 +720,6 @@ export const serviceProto: ServiceProto<ServiceType> = {
                 {
                     "id": 0,
                     "name": "message",
-                    "type": {
-                        "type": "String"
-                    }
-                }
-            ]
-        },
-        "PtlGetData/ReqGetData": {
-            "type": "Interface",
-            "extends": [
-                {
-                    "id": 0,
-                    "type": {
-                        "type": "Reference",
-                        "target": "base/BaseRequest"
-                    }
-                }
-            ]
-        },
-        "PtlGetData/ResGetData": {
-            "type": "Interface",
-            "extends": [
-                {
-                    "id": 0,
-                    "type": {
-                        "type": "Reference",
-                        "target": "base/BaseResponse"
-                    }
-                }
-            ],
-            "properties": [
-                {
-                    "id": 0,
-                    "name": "content",
                     "type": {
                         "type": "String"
                     }

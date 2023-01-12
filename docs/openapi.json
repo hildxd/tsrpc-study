@@ -1,0 +1,1245 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "TSRPC Open API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/post/AddPost": {
+      "post": {
+        "tags": [
+          "post"
+        ],
+        "operationId": "post/AddPost",
+        "requestBody": {
+          "description": "Req<AddPost>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/post_PtlAddPost_ReqAddPost"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResAddPost>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/post_PtlAddPost_ResAddPost"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/post/DelPost": {
+      "post": {
+        "tags": [
+          "post"
+        ],
+        "operationId": "post/DelPost",
+        "requestBody": {
+          "description": "Req<DelPost>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/post_PtlDelPost_ReqDelPost"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResDelPost>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/post_PtlDelPost_ResDelPost"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/post/GetAllPost": {
+      "post": {
+        "tags": [
+          "post"
+        ],
+        "operationId": "post/GetAllPost",
+        "requestBody": {
+          "description": "Req<GetAllPost>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/post_PtlGetAllPost_ReqGetAllPost"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResGetAllPost>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/post_PtlGetAllPost_ResGetAllPost"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/post/GetPost": {
+      "post": {
+        "tags": [
+          "post"
+        ],
+        "operationId": "post/GetPost",
+        "requestBody": {
+          "description": "Req<GetPost>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/post_PtlGetPost_ReqGetPost"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResGetPost>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/post_PtlGetPost_ResGetPost"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/post/UpdatePost": {
+      "post": {
+        "tags": [
+          "post"
+        ],
+        "operationId": "post/UpdatePost",
+        "requestBody": {
+          "description": "Req<UpdatePost>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/post_PtlUpdatePost_ReqUpdatePost"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResUpdatePost>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/post_PtlUpdatePost_ResUpdatePost"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/tag/Add": {
+      "post": {
+        "tags": [
+          "tag"
+        ],
+        "operationId": "tag/Add",
+        "requestBody": {
+          "description": "Req<Add>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/tag_PtlAdd_ReqAdd"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResAdd>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/tag_PtlAdd_ResAdd"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/tag/GetAll": {
+      "post": {
+        "tags": [
+          "tag"
+        ],
+        "operationId": "tag/GetAll",
+        "requestBody": {
+          "description": "Req<GetAll>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/tag_PtlGetAll_ReqGetAll"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResGetAll>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/tag_PtlGetAll_ResGetAll"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/user/ChangeRole": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "operationId": "user/ChangeRole",
+        "requestBody": {
+          "description": "Req<ChangeRole>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/user_PtlChangeRole_ReqChangeRole"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResChangeRole>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/user_PtlChangeRole_ResChangeRole"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/user/GetTags": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "operationId": "user/GetTags",
+        "requestBody": {
+          "description": "Req<GetTags>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/user_PtlGetTags_ReqGetTags"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResGetTags>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/user_PtlGetTags_ResGetTags"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/user/Login": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "operationId": "user/Login",
+        "requestBody": {
+          "description": "Req<Login>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/user_PtlLogin_ReqLogin"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResLogin>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/user_PtlLogin_ResLogin"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/user/Register": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "operationId": "user/Register",
+        "requestBody": {
+          "description": "Req<Register>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/user_PtlRegister_ReqRegister"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResRegister>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/user_PtlRegister_ResRegister"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "post_PtlAddPost_ReqAddPost": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "content": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "title",
+              "content"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "tagId": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              }
+            },
+            "required": [
+              "tagId"
+            ]
+          }
+        ]
+      },
+      "base_BaseRequest": {
+        "type": "object",
+        "properties": {}
+      },
+      "___db_index_Post": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "title": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "pubished": {
+            "type": "boolean"
+          },
+          "authorId": {
+            "type": "string"
+          },
+          "createTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updateTime": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "content",
+          "pubished",
+          "authorId",
+          "createTime"
+        ]
+      },
+      "post_PtlAddPost_ResAddPost": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ]
+      },
+      "base_BaseResponse": {
+        "type": "object",
+        "properties": {}
+      },
+      "post_PtlDelPost_ReqDelPost": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ]
+      },
+      "post_PtlDelPost_ResDelPost": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "message"
+            ]
+          }
+        ]
+      },
+      "post_PtlGetAllPost_ReqGetAllPost": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "page": {
+                "type": "number"
+              },
+              "size": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "page",
+              "size"
+            ]
+          }
+        ]
+      },
+      "post_PtlGetAllPost_ResGetAllPost": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "posts": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/___db_index_Post"
+                }
+              },
+              "count": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "posts",
+              "count"
+            ]
+          }
+        ]
+      },
+      "post_PtlGetPost_ReqGetPost": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ]
+      },
+      "___db_index_PostFull": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "title": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "pubished": {
+            "type": "boolean"
+          },
+          "author": {
+            "$ref": "#/components/schemas/___db_index_User"
+          },
+          "authorId": {
+            "type": "string"
+          },
+          "createTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/___db_index_Post_Tag"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "content",
+          "pubished",
+          "author",
+          "authorId",
+          "createTime",
+          "tags"
+        ]
+      },
+      "___db_index_User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "uid": {
+            "type": "string"
+          },
+          "nickName": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "createTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updateTime": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "uid",
+          "nickName",
+          "username",
+          "password",
+          "roles",
+          "createTime"
+        ]
+      },
+      "___db_index_Post_Tag": {
+        "type": "object",
+        "properties": {
+          "postId": {
+            "type": "number"
+          },
+          "tagId": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "postId",
+          "tagId"
+        ]
+      },
+      "post_PtlGetPost_ResGetPost": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "post": {
+                "$ref": "#/components/schemas/___db_index_PostFull"
+              }
+            },
+            "required": [
+              "post"
+            ]
+          }
+        ]
+      },
+      "post_PtlUpdatePost_ReqUpdatePost": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "createTime": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updateTime": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "authorId": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "tagId": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              }
+            },
+            "required": [
+              "id"
+            ]
+          }
+        ]
+      },
+      "post_PtlUpdatePost_ResUpdatePost": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "message"
+            ]
+          }
+        ]
+      },
+      "tag_PtlAdd_ReqAdd": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ]
+      },
+      "___db_index_Tag": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "createTime": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "userId",
+          "createTime"
+        ]
+      },
+      "tag_PtlAdd_ResAdd": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ]
+      },
+      "tag_PtlGetAll_ReqGetAll": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ]
+      },
+      "tag_PtlGetAll_ResGetAll": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "tags": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/___db_index_Tag"
+                }
+              }
+            },
+            "required": [
+              "tags"
+            ]
+          }
+        ]
+      },
+      "user_PtlChangeRole_ReqChangeRole": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "uid": {
+                "type": "string"
+              },
+              "roles": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "uid",
+              "roles"
+            ]
+          }
+        ]
+      },
+      "user_PtlChangeRole_ResChangeRole": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "message"
+            ]
+          }
+        ]
+      },
+      "user_PtlGetTags_ReqGetTags": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ]
+      },
+      "user_PtlGetTags_ResGetTags": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "tags": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/___db_index_Tag"
+                }
+              }
+            },
+            "required": [
+              "tags"
+            ]
+          }
+        ]
+      },
+      "user_PtlLogin_ReqLogin": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "username": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "username",
+              "password"
+            ]
+          }
+        ]
+      },
+      "user_PtlLogin_ResLogin": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "token": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "token"
+            ]
+          }
+        ]
+      },
+      "user_PtlRegister_ReqRegister": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "username": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "username",
+              "password"
+            ]
+          }
+        ]
+      },
+      "user_PtlRegister_ResRegister": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "_token": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "_token"
+            ]
+          }
+        ]
+      },
+      "?bson_ObjectID": {
+        "type": "string"
+      },
+      "?bson_ObjectId": {
+        "type": "string"
+      },
+      "?mongodb_ObjectID": {
+        "type": "string"
+      },
+      "?mongodb_ObjectId": {
+        "type": "string"
+      }
+    },
+    "responses": {
+      "error": {
+        "description": "Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "title": "API 错误",
+              "description": "业务错误（ApiError）返回 HTTP 状态码 200，其它错误返回 HTTP 状态码 500",
+              "properties": {
+                "isSucc": {
+                  "type": "boolean",
+                  "enum": [
+                    false
+                  ],
+                  "default": false
+                },
+                "err": {
+                  "type": "object",
+                  "description": "TsrpcError",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "ApiError",
+                        "NetworkError",
+                        "ServerError",
+                        "ClientError"
+                      ]
+                    },
+                    "code": {
+                      "oneOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "integer"
+                        }
+                      ],
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "type"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

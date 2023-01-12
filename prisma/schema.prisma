@@ -39,7 +39,7 @@ model User {
   /// 修改时间
   updateTime DateTime? @updatedAt
   /// 标签
-  Tag        Tag[]
+  tags       Tag[]
 }
 
 /// 文章
@@ -61,7 +61,7 @@ model Post {
   /// 修改时间
   updateTime DateTime? @updatedAt
 
-  Post_Tag Post_Tag[]
+  tags Post_Tag[]
 }
 
 model Post_Tag {
@@ -85,5 +85,5 @@ model Tag {
   userId     String
   /// 创建时间
   createTime DateTime   @default(now())
-  Post_Tag   Post_Tag[]
+  posts      Post_Tag[]
 }
