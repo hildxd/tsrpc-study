@@ -55,7 +55,7 @@ export async function withCasbin(
         const type = conf.auths.type || "SOME";
         const roles = conf.auths.roles;
         const userRoles = node.userRoles ?? [];
-        if (type === "SOME") {
+        if (type === "SOME" && roles.length > 0) {
           const hasRole = roles.some((role) => userRoles.includes(role));
           if (!hasRole) {
             await node.error(
@@ -66,7 +66,7 @@ export async function withCasbin(
               })
             );
           }
-        } else if (type === "EVERY") {
+        } else if (type === "EVERY" && roles.length > 0) {
           const mustRole = roles.every((role) => userRoles.includes(role));
           if (!mustRole) {
             await node.error(
