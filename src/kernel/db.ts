@@ -1,26 +1,7 @@
-import { Collection, Db, MongoClient, OptionalId } from "mongodb";
-import { ApiCall, HttpServer } from "tsrpc";
-import { DbUser } from "../db/DbUser";
-import env from "../env";
-import { BaseRequest, BaseResponse } from "../shared/protocols/base";
+import { PrismaClient } from "@prisma/client/generate-client";
 
-export async function initDb(server: HttpServer) {
-  const client = await new MongoClient(env.DATABASE_URL).connect();
-  const db: Db = client.db("tsrpc_study");
-  const collection = <T extends keyof DbCollectionType>(
-    col: T
-  ): Collection<OptionalId<DbCollectionType[T]>> => {
-    return db.collection(col);
-  };
+export * from "@prisma/client/generate-client";
 
-  server.flows.preApiCallFlow.push(
-    async (node: ApiCall<BaseRequest, BaseResponse, any>) => {
-      node.collection = collection;
-      return node;
-    }
-  );
-}
+export const db = new PrismaClient();
 
-export interface DbCollectionType {
-  User: DbUser;
-}
+export default db;

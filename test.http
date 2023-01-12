@@ -1,6 +1,6 @@
 
 @host = http://localhost:3000
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJpbWxhbHZ0NnlyIiwiaWF0IjoxNjczNDI0NTI2fQ.X57SHYOoHtE7gODATPYx7cYkIWwNDj0aW89Tw4NNulQ
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJoZjgxNXltdXFvIiwiaWF0IjoxNjczNTAyNTI0fQ.mgqztzF9ly0t05oX9uv7Yz4RKOQVUjKxKCcdMWqR-Nc
 
 ### test
 POST {{host}}/GetData
@@ -34,6 +34,6 @@ Authorization: {{token}}
 Content-Type: application/json
 
 {
-    "uid": "uadnb7bhfy",
+    "uid": "hf815ymuqo",
     "roles": ["admin"]
 }

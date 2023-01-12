@@ -6,7 +6,7 @@ export interface ReqChangeRole extends BaseRequest {
 }
 
 export interface ResChangeRole extends BaseResponse {
-  matchedCount: number;
+  message: string;
 }
 
 export const conf: BaseConf = {

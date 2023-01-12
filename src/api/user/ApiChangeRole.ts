@@ -1,4 +1,5 @@
 import { ApiCall } from "tsrpc";
+import db from "../../kernel/db";
 import redis from "../../kernel/redis";
 import {
   ReqChangeRole,
@@ -6,22 +7,16 @@ import {
 } from "../../shared/protocols/user/PtlChangeRole";
 
 export default async function (call: ApiCall<ReqChangeRole, ResChangeRole>) {
-  let op2 = await call.collection("User").updateOne(
-    {
-      uid: call.req.uid,
-    },
-    {
-      $set: {
-        roles: call.req.roles,
-      },
-    }
-  );
-  if (op2.matchedCount === 0) {
-    call.error("用户未找到");
-    return;
+  try {
+    await db.user.update({
+      where: { uid: call.req.uid },
+      data: { roles: call.req.roles },
+    });
+    await redis.setRoles(call.req.uid, call.req.roles);
+    call.succ({
+      message: "修改成功",
+    });
+  } catch (err) {
+    call.error("用户不存在");
   }
-  await redis.setRoles(call.req.uid, call.req.roles);
-  call.succ({
-    matchedCount: op2.matchedCount,
-  });
 }

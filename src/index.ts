@@ -1,8 +1,6 @@
 import * as path from "path";
 import { HttpServer } from "tsrpc";
 import { serviceProto } from "./shared/protocols/serviceProto";
-import { DbCollectionType, initDb } from "./kernel/db";
-import { Collection, OptionalId } from "mongodb";
 import { withJwt } from "./kernel/withJwt";
 import { Enforcer } from "casbin";
 import { withCasbin } from "./kernel/withCasbin";
@@ -21,7 +19,6 @@ async function init() {
 
   await withJwt(server);
   await withCasbin(server, path.resolve(__dirname, "model.conf"));
-  await initDb(server);
 }
 
 // Entry function
@@ -35,10 +32,6 @@ declare module "tsrpc" {
   export interface ApiCall {
     // userId
     userId?: string;
-    // mongodb
-    collection: <T extends keyof DbCollectionType>(
-      col: T
-    ) => Collection<OptionalId<DbCollectionType[T]>>;
     // 用户角色
     userRoles?: string[];
     // casbin 权限处理

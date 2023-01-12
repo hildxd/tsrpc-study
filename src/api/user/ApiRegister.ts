@@ -4,26 +4,28 @@ import {
   ResRegister,
 } from "../../shared/protocols/user/PtlRegister";
 import redis from "../../kernel/redis";
-import { getUserId } from "../../utils/nanoid";
+import { getUserId, nanoid } from "../../utils/nanoid";
 import bcrypt from "bcryptjs";
+import db from "../../kernel/db";
 
 export default async function (call: ApiCall<ReqRegister, ResRegister>) {
-  let op = await call.collection("User").findOne({
-    username: call.req.username,
+  const user = await db.user.findUnique({
+    where: { username: call.req.username },
   });
-  if (op) {
+  if (user) {
     call.error("用户名已存在");
     return;
   }
   let userId = getUserId();
   const password = bcrypt.hashSync(call.req.password, 8);
-  await call.collection("User").insertOne({
-    username: call.req.username,
-    password,
-    uid: userId,
-    roles: [],
+  await db.user.create({
+    data: {
+      username: call.req.username,
+      nickName: `用户${nanoid(5)}`,
+      uid: userId,
+      password,
+    },
   });
-
   await redis.setRoles(userId, []);
   const token = await redis.setToken(userId, { uid: userId });
   call.succ({

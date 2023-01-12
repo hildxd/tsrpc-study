@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  output          = "../node_modules/@prisma/client/generate-client"
+  previewFeatures = ["fullTextSearch", "extendedWhereUnique", "filteredRelationCount", "fieldReference"]
+  relationMode    = "prisma"
+}
+
+generator tsrpc {
+  provider = "node ./node_modules/@stringke/prisma-generator-tsrpc"
+  output   = "../src/shared/db"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// 用户
+model User {
+  /// ID 主键
+  id       Int      @id @default(autoincrement())
+  /// uid
+  uid      String   @unique
+  /// 昵称
+  nickName String   @unique
+  /// 用户名
+  username String   @unique
+  /// 密码
+  password String
+  /// 文章
+  posts    Post[]
+  /// 标签
+  tags     Tag[]
+  /// 权限
+  roles    String[]
+}
+
+/// 文章
+model Post {
+  /// ID 主键
+  id       Int     @id @default(autoincrement())
+  /// 标题
+  title    String
+  /// 内容
+  content  String  @default("")
+  /// 是否已发布
+  pubished Boolean @default(false)
+  /// 作者
+  author   User    @relation(fields: [authorId], references: [id])
+  /// 作者id
+  authorId Int
+  /// 标签
+  Tag      Tag?    @relation(fields: [tagId], references: [id])
+  /// 标签id
+  tagId    Int?
+}
+
+/// 标签
+model Tag {
+  /// ID
+  id     Int    @id @default(autoincrement())
+  /// 名字
+  name   String @unique
+  /// 关联文章列表
+  posts  Post[]
+  /// 关联用户
+  User   User   @relation(fields: [userId], references: [id])
+  /// 关联用户id
+  userId Int
+}

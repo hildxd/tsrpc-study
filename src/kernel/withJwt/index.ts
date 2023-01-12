@@ -37,7 +37,6 @@ export async function withJwt(server: HttpServer | WsServer) {
         node.userId = await getUserId(token);
         if (node.userId) {
           node.userRoles = await redis.getRoles(node.userId);
-          console.log("userRoles: ", node.userRoles);
         }
       }
       return node;
