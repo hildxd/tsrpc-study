@@ -12,6 +12,9 @@
     "sync": "tsrpc-cli sync",
     "api": "tsrpc-cli api"
   },
+  "prisma": {
+    "seed": "ts-node ./src/seed.ts"
+  },
   "devDependencies": {
     "@prisma/client": "^4.8.1",
     "@stringke/prisma-generator-tsrpc": "^1.0.13",

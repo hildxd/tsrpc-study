@@ -33,7 +33,7 @@ model User {
   /// 文章
   posts      Post[]
   /// 权限
-  roles      String[]
+  roles      String[]  @default(["user"])
   /// 创建时间
   createTime DateTime  @default(now())
   /// 修改时间
