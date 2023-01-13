@@ -5,7 +5,7 @@ import {
 } from "../../shared/protocols/user/PtlRegister";
 import redis from "../../kernel/redis";
 import { getUserId, nanoid } from "../../utils/nanoid";
-import bcrypt from "bcryptjs";
+import * as argon2 from "argon2";
 import db from "../../kernel/db";
 
 export default async function (call: ApiCall<ReqRegister, ResRegister>) {
@@ -17,7 +17,7 @@ export default async function (call: ApiCall<ReqRegister, ResRegister>) {
     return;
   }
   let userId = getUserId();
-  const password = bcrypt.hashSync(call.req.password, 8);
+  const password = await argon2.hash(call.req.password);
   await db.user.create({
     data: {
       username: call.req.username,

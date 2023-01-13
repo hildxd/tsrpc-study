@@ -28,7 +28,7 @@
   "dependencies": {
     "@types/jsonwebtoken": "^9.0.0",
     "@types/lodash": "^4.14.191",
-    "bcryptjs": "^2.4.3",
+    "argon2": "^0.30.3",
     "casbin": "^5.20.3",
     "dotenv": "^16.0.3",
     "ioredis": "^5.2.4",
