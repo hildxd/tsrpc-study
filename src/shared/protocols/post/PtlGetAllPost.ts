@@ -1,4 +1,4 @@
-import { Post, PostFull } from "../../db";
+import { Post } from "../../db";
 import { BaseRequest, BaseResponse, BaseConf } from "../base";
 
 export interface ReqGetAllPost extends BaseRequest {

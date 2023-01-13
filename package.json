@@ -38,6 +38,7 @@
     "jsonwebtoken": "^9.0.0",
     "lodash": "^4.17.21",
     "tsrpc": "^3.4.11",
+    "tsrpc-proto": "^1.4.3",
     "zod": "^3.20.2"
   }
 }
