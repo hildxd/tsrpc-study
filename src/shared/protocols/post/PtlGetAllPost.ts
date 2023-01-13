@@ -3,7 +3,7 @@ import { BaseRequest, BaseResponse, BaseConf } from "../base";
 
 export interface ReqGetAllPost extends BaseRequest {
   page: number;
-  size: number;
+  pageSize: number;
 }
 
 export interface ResGetAllPost extends BaseResponse {

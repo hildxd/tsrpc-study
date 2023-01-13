@@ -39,7 +39,7 @@ class RedisHelper extends Redis {
     await this.set(`roles:${uid}`, value.join(","));
   }
 
-  async getRoles(uid: string) {
+  async getRoles(uid: string): Promise<string[]> {
     const data = await this.get(`roles:${uid}`);
     if (data) {
       return data.split(",");
