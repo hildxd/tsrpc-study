@@ -6,6 +6,7 @@ import { ReqGetPost, ResGetPost } from './post/PtlGetPost';
 import { ReqUpdatePost, ResUpdatePost } from './post/PtlUpdatePost';
 import { ReqAdd, ResAdd } from './tag/PtlAdd';
 import { ReqGetAll, ResGetAll } from './tag/PtlGetAll';
+import { ReqUpdate, ResUpdate } from './tag/PtlUpdate';
 import { ReqChangeRole, ResChangeRole } from './user/PtlChangeRole';
 import { ReqGetTags, ResGetTags } from './user/PtlGetTags';
 import { ReqLogin, ResLogin } from './user/PtlLogin';
@@ -41,6 +42,10 @@ export interface ServiceType {
             req: ReqGetAll,
             res: ResGetAll
         },
+        "tag/Update": {
+            req: ReqUpdate,
+            res: ResUpdate
+        },
         "user/ChangeRole": {
             req: ReqChangeRole,
             res: ResChangeRole
@@ -64,7 +69,7 @@ export interface ServiceType {
 }
 
 export const serviceProto: ServiceProto<ServiceType> = {
-    "version": 7,
+    "version": 8,
     "services": [
         {
             "id": 0,
@@ -135,6 +140,12 @@ export const serviceProto: ServiceProto<ServiceType> = {
                     "roles": []
                 }
             }
+        },
+        {
+            "id": 13,
+            "name": "tag/Update",
+            "type": "api",
+            "conf": {}
         },
         {
             "id": 8,
@@ -842,6 +853,63 @@ export const serviceProto: ServiceProto<ServiceType> = {
                             "type": "Reference",
                             "target": "../db/index/Tag"
                         }
+                    }
+                }
+            ]
+        },
+        "tag/PtlUpdate/ReqUpdate": {
+            "type": "Interface",
+            "extends": [
+                {
+                    "id": 0,
+                    "type": {
+                        "type": "Reference",
+                        "target": "base/BaseRequest"
+                    }
+                },
+                {
+                    "id": 1,
+                    "type": {
+                        "type": "Partial",
+                        "target": {
+                            "type": "Reference",
+                            "target": "../db/index/Tag"
+                        }
+                    }
+                }
+            ],
+            "properties": [
+                {
+                    "id": 0,
+                    "name": "id",
+                    "type": {
+                        "type": "IndexedAccess",
+                        "index": "id",
+                        "objectType": {
+                            "type": "Reference",
+                            "target": "../db/index/Tag"
+                        }
+                    }
+                }
+            ]
+        },
+        "tag/PtlUpdate/ResUpdate": {
+            "type": "Interface",
+            "extends": [
+                {
+                    "id": 0,
+                    "type": {
+                        "type": "Reference",
+                        "target": "base/BaseResponse"
+                    }
+                }
+            ],
+            "properties": [
+                {
+                    "id": 0,
+                    "name": "message",
+                    "type": {
+                        "type": "String"
                     }
                 }
             ]

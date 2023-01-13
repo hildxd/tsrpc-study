@@ -334,6 +334,53 @@
         }
       }
     },
+    "/tag/Update": {
+      "post": {
+        "tags": [
+          "tag"
+        ],
+        "operationId": "tag/Update",
+        "requestBody": {
+          "description": "Req<Update>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/tag_PtlUpdate_ReqUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResUpdate>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/tag_PtlUpdate_ResUpdate"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
     "/user/ChangeRole": {
       "post": {
         "tags": [
@@ -678,13 +725,13 @@
               "page": {
                 "type": "number"
               },
-              "size": {
+              "pageSize": {
                 "type": "number"
               }
             },
             "required": [
               "page",
-              "size"
+              "pageSize"
             ]
           }
         ]
@@ -1013,6 +1060,60 @@
             },
             "required": [
               "tags"
+            ]
+          }
+        ]
+      },
+      "tag_PtlUpdate_ReqUpdate": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "name": {
+                "type": "string"
+              },
+              "userId": {
+                "type": "string"
+              },
+              "createTime": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          }
+        ]
+      },
+      "tag_PtlUpdate_ResUpdate": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "message"
             ]
           }
         ]

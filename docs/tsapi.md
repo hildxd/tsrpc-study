@@ -18,6 +18,7 @@
 - tag
     - [Add](#/tag/Add)
     - [GetAll](#/tag/GetAll)
+    - [Update](#/tag/Update)
 - user
     - [ChangeRole](#/user/ChangeRole)
     - [GetTags](#/user/GetTags)
@@ -99,7 +100,7 @@ interface ResDelPost {
 ```ts
 interface ReqGetAllPost {
     page: number,
-    size: number
+    pageSize: number
 }
 ```
 
@@ -278,6 +279,30 @@ interface ResGetAll {
   "auths": {
     "roles": []
   }
+}
+```
+
+---
+
+### Update <a id="/tag/Update"></a>
+
+**路径**
+- POST `/tag/Update`
+
+**请求**
+```ts
+interface ReqUpdate {
+    id: number,
+    name?: string,
+    userId?: string,
+    createTime?: /*datetime*/ string
+}
+```
+
+**响应**
+```ts
+interface ResUpdate {
+    message: string
 }
 ```
 
