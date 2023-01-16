@@ -5,6 +5,6 @@ export interface ReqGetUserInfo extends BaseRequest {}
 
 export interface ResGetUserInfo
   extends BaseResponse,
-    Pick<UserFull, "uid" | "nickName" | "tags" | "posts"> {}
+    Pick<UserFull, "tags" | "posts"> {}
 
 export const conf: BaseConf = {};

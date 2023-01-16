@@ -74,7 +74,7 @@ export interface ServiceType {
 }
 
 export const serviceProto: ServiceProto<ServiceType> = {
-    "version": 10,
+    "version": 11,
     "services": [
         {
             "id": 0,
@@ -359,10 +359,17 @@ export const serviceProto: ServiceProto<ServiceType> = {
                     }
                 },
                 {
-                    "id": 3,
-                    "name": "pubished",
+                    "id": 7,
+                    "name": "createdAt",
                     "type": {
-                        "type": "Boolean"
+                        "type": "Date"
+                    }
+                },
+                {
+                    "id": 8,
+                    "name": "updatedAt",
+                    "type": {
+                        "type": "Date"
                     }
                 },
                 {
@@ -373,15 +380,15 @@ export const serviceProto: ServiceProto<ServiceType> = {
                     }
                 },
                 {
-                    "id": 5,
-                    "name": "createTime",
+                    "id": 9,
+                    "name": "published",
                     "type": {
-                        "type": "Date"
+                        "type": "Boolean"
                     }
                 },
                 {
-                    "id": 6,
-                    "name": "updateTime",
+                    "id": 10,
+                    "name": "publishedAt",
                     "type": {
                         "type": "Union",
                         "members": [
@@ -607,10 +614,17 @@ export const serviceProto: ServiceProto<ServiceType> = {
                     }
                 },
                 {
-                    "id": 3,
-                    "name": "pubished",
+                    "id": 11,
+                    "name": "createdAt",
                     "type": {
-                        "type": "Boolean"
+                        "type": "Date"
+                    }
+                },
+                {
+                    "id": 12,
+                    "name": "updatedAt",
+                    "type": {
+                        "type": "Date"
                     }
                 },
                 {
@@ -629,15 +643,15 @@ export const serviceProto: ServiceProto<ServiceType> = {
                     }
                 },
                 {
-                    "id": 7,
-                    "name": "createTime",
+                    "id": 13,
+                    "name": "published",
                     "type": {
-                        "type": "Date"
+                        "type": "Boolean"
                     }
                 },
                 {
-                    "id": 8,
-                    "name": "updateTime",
+                    "id": 14,
+                    "name": "publishedAt",
                     "type": {
                         "type": "Union",
                         "members": [
@@ -665,7 +679,7 @@ export const serviceProto: ServiceProto<ServiceType> = {
                         "type": "Array",
                         "elementType": {
                             "type": "Reference",
-                            "target": "../db/index/Post_Tag"
+                            "target": "../db/index/PostTag"
                         }
                     }
                 }
@@ -677,20 +691,6 @@ export const serviceProto: ServiceProto<ServiceType> = {
                 {
                     "id": 0,
                     "name": "id",
-                    "type": {
-                        "type": "Number"
-                    }
-                },
-                {
-                    "id": 1,
-                    "name": "uid",
-                    "type": {
-                        "type": "String"
-                    }
-                },
-                {
-                    "id": 2,
-                    "name": "nickName",
                     "type": {
                         "type": "String"
                     }
@@ -710,6 +710,20 @@ export const serviceProto: ServiceProto<ServiceType> = {
                     }
                 },
                 {
+                    "id": 8,
+                    "name": "createAt",
+                    "type": {
+                        "type": "Date"
+                    }
+                },
+                {
+                    "id": 9,
+                    "name": "updateAt",
+                    "type": {
+                        "type": "Date"
+                    }
+                },
+                {
                     "id": 5,
                     "name": "roles",
                     "type": {
@@ -718,51 +732,21 @@ export const serviceProto: ServiceProto<ServiceType> = {
                             "type": "String"
                         }
                     }
-                },
-                {
-                    "id": 6,
-                    "name": "createTime",
-                    "type": {
-                        "type": "Date"
-                    }
-                },
-                {
-                    "id": 7,
-                    "name": "updateTime",
-                    "type": {
-                        "type": "Union",
-                        "members": [
-                            {
-                                "id": 0,
-                                "type": {
-                                    "type": "Date"
-                                }
-                            },
-                            {
-                                "id": 1,
-                                "type": {
-                                    "type": "Literal",
-                                    "literal": null
-                                }
-                            }
-                        ]
-                    },
-                    "optional": true
                 }
             ]
         },
-        "../db/index/Post_Tag": {
+        "../db/index/PostTag": {
             "type": "Interface",
             "properties": [
                 {
-                    "id": 1,
+                    "id": 0,
                     "name": "postId",
                     "type": {
                         "type": "Number"
                     }
                 },
                 {
-                    "id": 2,
+                    "id": 1,
                     "name": "tagId",
                     "type": {
                         "type": "Number"
@@ -803,7 +787,7 @@ export const serviceProto: ServiceProto<ServiceType> = {
                     }
                 },
                 {
-                    "id": 3,
+                    "id": 4,
                     "type": {
                         "type": "Partial",
                         "target": {
@@ -812,8 +796,8 @@ export const serviceProto: ServiceProto<ServiceType> = {
                                 "target": "../db/index/Post"
                             },
                             "keys": [
-                                "createTime",
-                                "updateTime",
+                                "createdAt",
+                                "updatedAt",
                                 "authorId"
                             ],
                             "type": "Pick"
@@ -915,13 +899,6 @@ export const serviceProto: ServiceProto<ServiceType> = {
                     "name": "userId",
                     "type": {
                         "type": "String"
-                    }
-                },
-                {
-                    "id": 3,
-                    "name": "createTime",
-                    "type": {
-                        "type": "Date"
                     }
                 }
             ]
@@ -1157,15 +1134,13 @@ export const serviceProto: ServiceProto<ServiceType> = {
                     }
                 },
                 {
-                    "id": 1,
+                    "id": 2,
                     "type": {
                         "target": {
                             "type": "Reference",
                             "target": "../db/index/UserFull"
                         },
                         "keys": [
-                            "uid",
-                            "nickName",
                             "tags",
                             "posts"
                         ],
@@ -1180,20 +1155,6 @@ export const serviceProto: ServiceProto<ServiceType> = {
                 {
                     "id": 0,
                     "name": "id",
-                    "type": {
-                        "type": "Number"
-                    }
-                },
-                {
-                    "id": 1,
-                    "name": "uid",
-                    "type": {
-                        "type": "String"
-                    }
-                },
-                {
-                    "id": 2,
-                    "name": "nickName",
                     "type": {
                         "type": "String"
                     }
@@ -1213,14 +1174,17 @@ export const serviceProto: ServiceProto<ServiceType> = {
                     }
                 },
                 {
-                    "id": 5,
-                    "name": "posts",
+                    "id": 10,
+                    "name": "createAt",
                     "type": {
-                        "type": "Array",
-                        "elementType": {
-                            "type": "Reference",
-                            "target": "../db/index/Post"
-                        }
+                        "type": "Date"
+                    }
+                },
+                {
+                    "id": 11,
+                    "name": "updateAt",
+                    "type": {
+                        "type": "Date"
                     }
                 },
                 {
@@ -1234,22 +1198,16 @@ export const serviceProto: ServiceProto<ServiceType> = {
                     }
                 },
                 {
-                    "id": 7,
-                    "name": "createTime",
-                    "type": {
-                        "type": "Date"
-                    }
-                },
-                {
-                    "id": 8,
-                    "name": "updateTime",
+                    "id": 12,
+                    "name": "profile",
                     "type": {
                         "type": "Union",
                         "members": [
                             {
                                 "id": 0,
                                 "type": {
-                                    "type": "Date"
+                                    "type": "Reference",
+                                    "target": "../db/index/Profile"
                                 }
                             },
                             {
@@ -1264,6 +1222,17 @@ export const serviceProto: ServiceProto<ServiceType> = {
                     "optional": true
                 },
                 {
+                    "id": 5,
+                    "name": "posts",
+                    "type": {
+                        "type": "Array",
+                        "elementType": {
+                            "type": "Reference",
+                            "target": "../db/index/Post"
+                        }
+                    }
+                },
+                {
                     "id": 9,
                     "name": "tags",
                     "type": {
@@ -1272,6 +1241,53 @@ export const serviceProto: ServiceProto<ServiceType> = {
                             "type": "Reference",
                             "target": "../db/index/Tag"
                         }
+                    }
+                }
+            ]
+        },
+        "../db/index/Profile": {
+            "type": "Interface",
+            "properties": [
+                {
+                    "id": 0,
+                    "name": "id",
+                    "type": {
+                        "type": "Number"
+                    }
+                },
+                {
+                    "id": 1,
+                    "name": "nickname",
+                    "type": {
+                        "type": "String"
+                    }
+                },
+                {
+                    "id": 2,
+                    "name": "avatar",
+                    "type": {
+                        "type": "String"
+                    }
+                },
+                {
+                    "id": 3,
+                    "name": "createdAt",
+                    "type": {
+                        "type": "Date"
+                    }
+                },
+                {
+                    "id": 4,
+                    "name": "updatedAt",
+                    "type": {
+                        "type": "Date"
+                    }
+                },
+                {
+                    "id": 5,
+                    "name": "userId",
+                    "type": {
+                        "type": "String"
                     }
                 }
             ]

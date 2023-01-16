@@ -16,7 +16,7 @@ export default async function (call: ApiCall<ReqLogin, ResLogin>) {
     call.error("密码错误");
     return;
   }
-  const token = await redis.setToken(user.uid, { uid: user.uid });
+  const token = await redis.setToken(user.id, { uid: user.id });
   call.succ({
     token,
   });

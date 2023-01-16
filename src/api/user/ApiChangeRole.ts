@@ -9,7 +9,9 @@ import {
 export default async function (call: ApiCall<ReqChangeRole, ResChangeRole>) {
   try {
     await db.user.update({
-      where: { uid: call.req.uid },
+      where: {
+        id: call.userId,
+      },
       data: { roles: call.req.roles },
     });
     await redis.setRoles(call.req.uid, call.req.roles);

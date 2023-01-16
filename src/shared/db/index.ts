@@ -4,112 +4,166 @@
 
 /* Model 用户 */
 export type UserFull = {
-    /* ID 主键 */
-    id: number;
-    /* uid */
-    uid: string;
-    /* 昵称 */
-    nickName: string;
+    /* 主键 */
+    id: string;
     /* 用户名 */
     username: string;
     /* 密码 */
     password: string;
-    /* 文章 */
-    posts: Post[];
-    /* 权限 */
-    roles: string[];
     /* 创建时间 */
-    createTime: Date;
-    /* 修改时间 */
-    updateTime?: Date | null;
-    /* 标签 */
+    createAt: Date;
+    /* 更新时间 */
+    updateAt: Date;
+    /* 用户角色 */
+    roles: string[];
+    /* 用户信息 */
+    profile?: Profile | null;
+    /* 用户文章 */
+    posts: Post[];
+    /* 用户标签 */
     tags: Tag[];
 };
 
 /* Model 用户 */
 export type User = {
-    /* ID 主键 */
-    id: number;
-    /* uid */
-    uid: string;
-    /* 昵称 */
-    nickName: string;
+    /* 主键 */
+    id: string;
     /* 用户名 */
     username: string;
     /* 密码 */
     password: string;
-    /* 权限 */
-    roles: string[];
     /* 创建时间 */
-    createTime: Date;
-    /* 修改时间 */
-    updateTime?: Date | null;
+    createAt: Date;
+    /* 更新时间 */
+    updateAt: Date;
+    /* 用户角色 */
+    roles: string[];
 };
 
 /* Model User Relation All */
 export type UserRelation = {
-    /* 文章 */
+    /* 用户信息 */
+    profile?: Profile | null;
+    /* 用户文章 */
     posts: Post[];
-    /* 标签 */
+    /* 用户标签 */
     tags: Tag[];
+};
+
+/* Model User Relation Profile */
+export type UserProfileRelation = {
+    /* 用户信息 */
+    profile?: Profile | null;
 };
 
 /* Model User Relation Posts */
 export type UserPostsRelation = {
-    /* 文章 */
+    /* 用户文章 */
     posts: Post[];
 };
 
 /* Model User Relation Tags */
 export type UserTagsRelation = {
-    /* 标签 */
+    /* 用户标签 */
     tags: Tag[];
+};
+
+/* Model 用户信息 */
+export type ProfileFull = {
+    /* 主键 */
+    id: number;
+    /* 用户昵称 */
+    nickname: string;
+    /* 头像 */
+    avatar: string;
+    /* 创建时间 */
+    createdAt: Date;
+    /* 更新时间 */
+    updatedAt: Date;
+    /* 绑定的用户 */
+    user: User;
+    /* 绑定的用户id */
+    userId: string;
+};
+
+/* Model 用户信息 */
+export type Profile = {
+    /* 主键 */
+    id: number;
+    /* 用户昵称 */
+    nickname: string;
+    /* 头像 */
+    avatar: string;
+    /* 创建时间 */
+    createdAt: Date;
+    /* 更新时间 */
+    updatedAt: Date;
+    /* 绑定的用户id */
+    userId: string;
+};
+
+/* Model Profile Relation All */
+export type ProfileRelation = {
+    /* 绑定的用户 */
+    user: User;
+};
+
+/* Model Profile Relation User */
+export type ProfileUserRelation = {
+    /* 绑定的用户 */
+    user: User;
 };
 
 /* Model 文章 */
 export type PostFull = {
-    /* ID 主键 */
+    /* 主键 */
     id: number;
-    /* 标题 */
+    /* 文章标题 */
     title: string;
-    /* 内容 */
+    /* 文章内容 */
     content: string;
-    /* 是否已发布 */
-    pubished: boolean;
+    /* 创建时间 */
+    createdAt: Date;
+    /* 更新时间 */
+    updatedAt: Date;
     /* 作者 */
     author: User;
     /* 作者id */
     authorId: string;
-    /* 创建时间 */
-    createTime: Date;
-    /* 修改时间 */
-    updateTime?: Date | null;
-    tags: Post_Tag[];
+    /* 是否发布 */
+    published: boolean;
+    /* 发布时间 */
+    publishedAt?: Date | null;
+    /* 文章标签 */
+    tags: PostTag[];
 };
 
 /* Model 文章 */
 export type Post = {
-    /* ID 主键 */
+    /* 主键 */
     id: number;
-    /* 标题 */
+    /* 文章标题 */
     title: string;
-    /* 内容 */
+    /* 文章内容 */
     content: string;
-    /* 是否已发布 */
-    pubished: boolean;
+    /* 创建时间 */
+    createdAt: Date;
+    /* 更新时间 */
+    updatedAt: Date;
     /* 作者id */
     authorId: string;
-    /* 创建时间 */
-    createTime: Date;
-    /* 修改时间 */
-    updateTime?: Date | null;
+    /* 是否发布 */
+    published: boolean;
+    /* 发布时间 */
+    publishedAt?: Date | null;
 };
 
 /* Model Post Relation All */
 export type PostRelation = {
     /* 作者 */
     author: User;
-    tags: Post_Tag[];
+    /* 文章标签 */
+    tags: PostTag[];
 };
 
 /* Model Post Relation Author */
@@ -120,80 +174,90 @@ export type PostAuthorRelation = {
 
 /* Model Post Relation Tags */
 export type PostTagsRelation = {
-    tags: Post_Tag[];
+    /* 文章标签 */
+    tags: PostTag[];
 };
 
-/* Model undefined */
-export type Post_TagFull = {
-    post: Post;
-    tag: Tag;
-    postId: number;
-    tagId: number;
-};
-
-/* Model undefined */
-export type Post_Tag = {
-    postId: number;
-    tagId: number;
-};
-
-/* Model Post_Tag Relation All */
-export type Post_TagRelation = {
-    post: Post;
-    tag: Tag;
-};
-
-/* Model Post_Tag Relation Post */
-export type Post_TagPostRelation = {
-    post: Post;
-};
-
-/* Model Post_Tag Relation Tag */
-export type Post_TagTagRelation = {
-    tag: Tag;
-};
-
-/* Model 标签 */
+/* Model 文章标签 */
 export type TagFull = {
-    /* ID */
+    /* 主键 */
     id: number;
-    /* 名字 */
+    /* 标签名 */
     name: string;
-    /* 用户 */
+    /* 关联文章 */
+    posts: PostTag[];
+    /* 作者 */
     user: User;
-    /* 用户id */
+    /* 作者id */
     userId: string;
-    /* 创建时间 */
-    createTime: Date;
-    posts: Post_Tag[];
 };
 
-/* Model 标签 */
+/* Model 文章标签 */
 export type Tag = {
-    /* ID */
+    /* 主键 */
     id: number;
-    /* 名字 */
+    /* 标签名 */
     name: string;
-    /* 用户id */
+    /* 作者id */
     userId: string;
-    /* 创建时间 */
-    createTime: Date;
 };
 
 /* Model Tag Relation All */
 export type TagRelation = {
-    /* 用户 */
-    user: User;
-    posts: Post_Tag[];
-};
-
-/* Model Tag Relation User */
-export type TagUserRelation = {
-    /* 用户 */
+    /* 关联文章 */
+    posts: PostTag[];
+    /* 作者 */
     user: User;
 };
 
 /* Model Tag Relation Posts */
 export type TagPostsRelation = {
-    posts: Post_Tag[];
+    /* 关联文章 */
+    posts: PostTag[];
+};
+
+/* Model Tag Relation User */
+export type TagUserRelation = {
+    /* 作者 */
+    user: User;
+};
+
+/* Model 文章标签关联表 */
+export type PostTagFull = {
+    /* 文章id */
+    postId: number;
+    /* 文章 */
+    post: Post;
+    /* 标签id */
+    tagId: number;
+    /* 标签 */
+    tag: Tag;
+};
+
+/* Model 文章标签关联表 */
+export type PostTag = {
+    /* 文章id */
+    postId: number;
+    /* 标签id */
+    tagId: number;
+};
+
+/* Model PostTag Relation All */
+export type PostTagRelation = {
+    /* 文章 */
+    post: Post;
+    /* 标签 */
+    tag: Tag;
+};
+
+/* Model PostTag Relation Post */
+export type PostTagPostRelation = {
+    /* 文章 */
+    post: Post;
+};
+
+/* Model PostTag Relation Tag */
+export type PostTagTagRelation = {
+    /* 标签 */
+    tag: Tag;
 };

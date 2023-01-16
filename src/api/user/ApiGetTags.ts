@@ -5,7 +5,7 @@ import { ReqGetTags, ResGetTags } from "../../shared/protocols/user/PtlGetTags";
 export default async function (call: ApiCall<ReqGetTags, ResGetTags>) {
   const user = await db.user.findFirst({
     where: {
-      uid: call.userId,
+      id: call.userId,
     },
     include: { tags: true },
   });

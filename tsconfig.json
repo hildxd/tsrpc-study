@@ -21,6 +21,6 @@
     "sourceMap": true
   },
   "include": [
-    "src"
-, "src/seed.ts"  ]
+    "src", "prisma/seed.ts",
+  ]
 }

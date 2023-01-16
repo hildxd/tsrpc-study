@@ -20,70 +20,95 @@ datasource db {
 
 /// 用户
 model User {
-  /// ID 主键
-  id         Int       @id @default(autoincrement())
-  /// uid
-  uid        String    @unique
-  /// 昵称
-  nickName   String    @unique
+  /// 主键
+  id       String   @id @default(uuid())
   /// 用户名
-  username   String    @unique
+  username String   @unique
   /// 密码
-  password   String
-  /// 文章
-  posts      Post[]
-  /// 权限
-  roles      String[]  @default(["user"])
+  password String
   /// 创建时间
-  createTime DateTime  @default(now())
-  /// 修改时间
-  updateTime DateTime? @updatedAt
-  /// 标签
-  tags       Tag[]
+  createAt DateTime @default(now())
+  /// 更新时间
+  updateAt DateTime @updatedAt
+  /// 用户角色
+  roles    String[] @default(["user"])
+  /// 用户信息
+  profile  Profile?
+  /// 用户文章
+  posts    Post[]
+  /// 用户标签
+  tags     Tag[]
+}
+
+/// 用户信息
+model Profile {
+  /// 主键
+  id        Int      @id @default(autoincrement())
+  /// 用户昵称
+  nickname  String   @unique
+  /// 头像
+  avatar    String   @default("https://c-ssl.dtstatic.com/uploads/blog/202206/12/20220612164733_72d8b.thumb.1000_0.jpg")
+  /// 创建时间
+  createdAt DateTime @default(now())
+  /// 更新时间
+  updatedAt DateTime @updatedAt
+  /// 绑定的用户
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  /// 绑定的用户id
+  userId    String   @unique
 }
 
 /// 文章
 model Post {
-  /// ID 主键
-  id         Int       @id @default(autoincrement())
-  /// 标题
-  title      String
-  /// 内容
-  content    String    @default("")
-  /// 是否已发布
-  pubished   Boolean   @default(false)
-  /// 作者
-  author     User      @relation(fields: [authorId], references: [uid])
-  /// 作者id
-  authorId   String
+  /// 主键
+  id          Int       @id @default(autoincrement())
+  /// 文章标题
+  title       String
+  /// 文章内容
+  content     String    @db.Text
   /// 创建时间
-  createTime DateTime  @default(now())
-  /// 修改时间
-  updateTime DateTime? @updatedAt
+  createdAt   DateTime  @default(now())
+  /// 更新时间
+  updatedAt   DateTime  @updatedAt
+  /// 作者
+  author      User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  /// 作者id
+  authorId    String
+  /// 是否发布
+  published   Boolean   @default(false)
+  /// 发布时间
+  publishedAt DateTime?
+  /// 文章标签
+  tags        PostTag[]
 
-  tags Post_Tag[]
+  @@map("Posts")
 }
 
-model Post_Tag {
-  post   Post @relation(fields: [postId], references: [id])
-  tag    Tag  @relation(fields: [tagId], references: [id])
+/// 文章标签
+model Tag {
+  /// 主键
+  id     Int       @id @default(autoincrement())
+  ///  标签名
+  name   String
+  /// 关联文章
+  posts  PostTag[]
+  /// 作者
+  user   User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  /// 作者id
+  userId String
+}
+
+/// 文章标签关联表
+model PostTag {
+  /// 文章id
   postId Int
+  /// 文章
+  post   Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  /// 标签id
   tagId  Int
+  /// 标签
+  tag    Tag  @relation(fields: [tagId], references: [id], onDelete: Cascade)
 
   @@id([postId, tagId])
-}
-
-/// 标签
-model Tag {
-  /// ID
-  id         Int        @id @default(autoincrement())
-  /// 名字
-  name       String
-  /// 用户
-  user       User       @relation(fields: [userId], references: [uid])
-  /// 用户id
-  userId     String
-  /// 创建时间
-  createTime DateTime   @default(now())
-  posts      Post_Tag[]
+  @@map("PostTags")
 }

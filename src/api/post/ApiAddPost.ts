@@ -19,7 +19,7 @@ export default async function (call: ApiCall<ReqAddPost, ResAddPost>) {
           content: call.req.content,
           author: {
             connect: {
-              uid: call.userId,
+              id: call.userId,
             },
           },
         },

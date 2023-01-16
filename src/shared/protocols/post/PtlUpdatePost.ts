@@ -3,7 +3,7 @@ import { BaseRequest, BaseResponse, BaseConf } from "../base";
 
 export interface ReqUpdatePost
   extends BaseRequest,
-    Partial<Pick<Post, "createTime" | "updateTime" | "authorId">> {
+    Partial<Pick<Post, "createdAt" | "updatedAt" | "authorId">> {
   id: Post["id"];
   tagId?: number[];
 }

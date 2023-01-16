@@ -21,9 +21,12 @@ export default async function (call: ApiCall<ReqRegister, ResRegister>) {
   await db.user.create({
     data: {
       username: call.req.username,
-      nickName: `用户${nanoid(5)}`,
-      uid: userId,
       password,
+      profile: {
+        create: {
+          nickname: `用户${nanoid(5)}`,
+        },
+      },
     },
   });
   await redis.setRoles(userId, []);

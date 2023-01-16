@@ -9,9 +9,9 @@ export default async function (call: ApiCall<ReqDelPost, ResDelPost>) {
         where: { id: call.req.id, authorId: call.userId },
       });
 
-      await db.post_Tag.deleteMany({
-        where: { postId: call.req.id },
-      });
+      // await db.postTag.deleteMany({
+      //   where: { postId: call.req.id },
+      // });
 
       call.succ({
         message: "删除成功",
